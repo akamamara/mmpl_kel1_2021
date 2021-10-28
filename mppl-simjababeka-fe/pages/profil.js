@@ -1,10 +1,11 @@
 import { Typography } from '@mui/material'
 import AdminLayout from '../layouts/AdminLayout'
+import Biodata from '../sections/Biodata'
 
 const SiswaPage = () => {
   return (
     <>
-        <Typography>Alo</Typography>
+        <Biodata />
     </>
   )
 }
