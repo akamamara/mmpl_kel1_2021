@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from '../components/Button';
 import BiodataPribadi from "./BiodataPribadi";
+import BiodataOrangTua from "./BiodataOrangTua";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -20,7 +21,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -65,7 +66,7 @@ export default function Biodata() {
         <BiodataPribadi />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <BiodataOrangTua />
       </TabPanel>
     </Box>
   );

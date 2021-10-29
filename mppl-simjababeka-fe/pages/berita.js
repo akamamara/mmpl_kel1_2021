@@ -1,15 +1,14 @@
 import AdminLayout from '../layouts/AdminLayout'
-import Biodata from '../sections/Biodata'
 
-const ProfilPage = () => {
+const BeritaPage = () => {
   return (
     <>
-        <Biodata />
+        
     </>
   )
 }
 
-ProfilPage.getLayout = (page) => {
+BeritaPage.getLayout = (page) => {
   return (
     <AdminLayout>
         {page}
@@ -17,4 +16,4 @@ ProfilPage.getLayout = (page) => {
   )
 }
 
-export default ProfilPage;
+export default BeritaPage;
