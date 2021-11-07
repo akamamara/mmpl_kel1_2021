@@ -20,6 +20,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Avatar, ListItemButton } from "@mui/material";
 import Link from 'next/link'
+import { DrawerList } from '@/utils/list/NavbarList'
 
 const drawerWidth = 240;
 
@@ -162,51 +163,15 @@ export default function AdminLayout({children}) {
         </DrawerHeader>
         <Divider />
         <List>
-                <Link href="/profil" passHref>
-                  <ListItemButton classes={{root: classes.DrawerButton}}>
-                      <ListItemText primary="Profil" />
-                  </ListItemButton>
-                </Link>
-                <Link href="/siswa" passHref>
-                  <ListItemButton classes={{root: classes.DrawerButton}}>
-                      <ListItemText primary="Daftar Siswa" />
-                  </ListItemButton>
-                </Link>
-                <Link href="/guru" passHref>
-                  <ListItemButton classes={{root: classes.DrawerButton}}>
-                      <ListItemText primary="Daftar Guru" />
-                  </ListItemButton>
-                </Link>
-                <Link href="/matapelajaran" passHref>
-                  <ListItemButton classes={{root: classes.DrawerButton}}>
-                      <ListItemText primary="Daftar Mata Pelajaran" />
-                  </ListItemButton>
-                </Link>
-                <Link href="/pengumuman" passHref>
-                  <ListItemButton classes={{root: classes.DrawerButton}}>
-                      <ListItemText primary="Pengumuman" />
-                  </ListItemButton>
-                </Link>
-                <Link href="/berita" passHref>
-                  <ListItemButton classes={{root: classes.DrawerButton}}>
-                      <ListItemText primary="Berita" />
-                  </ListItemButton>
-                </Link>
-                <Link href="/galeri" passHref>
-                  <ListItemButton classes={{root: classes.DrawerButton}}>
-                      <ListItemText primary="Galeri" />
-                  </ListItemButton>
-                </Link>
-                <Link href="/tambahsiswa" passHref>
-                  <ListItemButton classes={{root: classes.DrawerButton}}>
-                      <ListItemText primary="Tambah Siswa" />
-                  </ListItemButton>
-                </Link>
-                <Link href="/tambahguru" passHref>
-                  <ListItemButton classes={{root: classes.DrawerButton}}>
-                      <ListItemText primary="Tambah Guru" />
-                  </ListItemButton>
-                </Link>
+                {
+                  DrawerList.map(item => (
+                    <Link href={item.endpoint} passHref key={item.id}>
+                      <ListItemButton classes={{root: classes.DrawerButton}}>
+                          <ListItemText primary={item.text} />
+                      </ListItemButton>
+                    </Link>
+                  ))
+                }
         </List>
         <Divider />
         </Drawer>

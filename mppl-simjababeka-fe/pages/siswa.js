@@ -1,9 +1,14 @@
 import AdminLayout from '../layouts/AdminLayout'
+import DenseTable from '@/components/surfaces/Table'
+import RecordSiswa from '@/utils/table/TableRecord'
+import VariableSiswa from '@/utils/table/TableVariable'
+import InputText from '@/components/surfaces/Input'
 
 const SiswaPage = () => {
   return (
     <>
-        Siswa
+        <InputText textLabel="nama siswa" />
+        <DenseTable record={RecordSiswa} variable={VariableSiswa} />
     </>
   )
 }
