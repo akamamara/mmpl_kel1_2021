@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Button from '../components/Button';
+import Button from "../../components/surfaces/Button";
 import BiodataPribadi from "./BiodataPribadi";
 import BiodataOrangTua from "./BiodataOrangTua";
 
@@ -31,13 +31,13 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
 };
 
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -60,7 +60,9 @@ export default function Biodata() {
           <Tab label="Pribadi" {...a11yProps(0)} />
           <Tab label="Orang Tua" {...a11yProps(1)} />
         </Tabs>
-        <Button variant="contained" text="Ubah Profil" color="success" size="small"/>
+        <Button color="success" onClick={() => alert("hoi")} sx={{ mb: 1 }}>
+          Ubah Profil
+        </Button>
       </Box>
       <TabPanel value={value} index={0}>
         <BiodataPribadi />

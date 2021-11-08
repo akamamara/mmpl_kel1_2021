@@ -1,20 +1,16 @@
-import AdminLayout from '../layouts/AdminLayout'
-import Biodata from '../sections/Biodata'
+import AdminLayout from "../layouts/AdminLayout";
+import Biodata from "../sections/biodata/Biodata";
 
 const ProfilPage = () => {
   return (
     <>
-        <Biodata />
+      <Biodata />
     </>
-  )
-}
+  );
+};
 
 ProfilPage.getLayout = (page) => {
-  return (
-    <AdminLayout>
-        {page}
-    </AdminLayout>
-  )
-}
+  return <AdminLayout>{page}</AdminLayout>;
+};
 
 export default ProfilPage;

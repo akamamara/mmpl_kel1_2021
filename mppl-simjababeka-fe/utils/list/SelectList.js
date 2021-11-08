@@ -1,0 +1,12 @@
+const KelasList = [
+  "Tingkat I - Teknik Kendaraan Ringan Otomotif", //
+  "Tingkat I - Teknik Komputer dan Jaringan",
+  "Tingkat II - Teknik Kendaraan Ringan Otomotif",
+  "Tingkat II - Teknik Komputer dan Jaringan",
+  "Tingkat III - Teknik Kendaraan Ringan Otomotif",
+  "Tingkat III - Teknik Komputer dan Jaringan",
+  "Tingkat IV - Teknik Kendaraan Ringan Otomotif",
+  "Tingkat IV - Teknik Komputer dan Jaringan",
+];
+
+export default KelasList;
