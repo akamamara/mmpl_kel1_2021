@@ -1,38 +1,41 @@
 const VariableGuru = [
-    "No",
-    "Nama",
-    "Mata Pelajaran",
-    "Wali Kelas"
-]
+  "No", //
+  "Nama",
+  "Mata Pelajaran",
+  "Wali Kelas",
+];
 const VariableSiswa = [
-    "No",
-    "Nama"
-]
+  "No", //
+  "Nama",
+];
 const VariableMataPelajaran = [
-    "No",
-    "Mata Pelajaran",
-    "Kelas"
-]
+  "No", //
+  "Mata Pelajaran",
+  "Kelas",
+];
 const VariablePengumuman = [
-    "No",
-    "Judul",
-    "Deskripsi",
-    "Tanggal Terbit",
-    "Actions"
-]
+  "No", //
+  "Judul",
+  "Deskripsi",
+  "Tanggal Terbit",
+];
 const VariableBerita = [
-    "No",
-    "Judul",
-    "Deskripsi",
-    "Tanggal Terbit",
-    "Actions"
-]
+  "No", //
+  "Judul",
+  "Deskripsi",
+  "Tanggal Terbit",
+];
 const VariableGaleri = [
-    "No",
-    "Judul",
-    "Foto",
-    "Tanggal Terbit",
-    "Actions"
-]
+  "No", //
+  "Judul",
+  "Foto",
+  "Tanggal Terbit",
+];
 export default VariableSiswa;
-export { VariableGuru, VariableMataPelajaran, VariablePengumuman, VariableBerita, VariableGaleri }
+export {
+  VariableGuru,
+  VariableMataPelajaran,
+  VariablePengumuman,
+  VariableBerita,
+  VariableGaleri,
+};

@@ -1,8 +1,8 @@
 import * as React from "react";
 import AdminLayout from "@/layouts/AdminLayout";
 import DenseTable from "@/components/surfaces/Table";
-import { RecordPengumuman } from "@/utils/table/TableRecord";
-import { VariablePengumuman } from "@/utils/table/TableVariable";
+import { RecordGaleri } from "@/utils/table/TableRecord";
+import { VariableGaleri } from "@/utils/table/TableVariable";
 import InputText from "@/components/surfaces/Input";
 import Button from "@/components/surfaces/Button";
 import Link from "next/link";
@@ -13,26 +13,26 @@ const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
   </span>
 ));
 
-const PengumumanPage = () => {
+const GaleriPage = () => {
   return (
     <>
-      <InputText label="Cari judul pengumuman" sx={{ width: "50%", mb: 1 }} />
-      <Link href="/pengumuman/tambahpengumuman" passHref>
+      <InputText label="Cari judul foto" sx={{ width: "50%", mb: 1 }} />
+      <Link href="/galeri/tambahgaleri" passHref>
         <ButtonNext color="success" sx={{ mb: 1 }}>
-          Tambah Pengumuman
+          Tambah Foto
         </ButtonNext>
       </Link>
       <DenseTable
-        record={RecordPengumuman}
-        variable={VariablePengumuman}
+        record={RecordGaleri}
+        variable={VariableGaleri}
         actionable={true}
       />
     </>
   );
 };
 
-PengumumanPage.getLayout = (page) => {
+GaleriPage.getLayout = (page) => {
   return <AdminLayout>{page}</AdminLayout>;
 };
 
-export default PengumumanPage;
+export default GaleriPage;
