@@ -24,6 +24,11 @@ themeHeading.typography.subtitle1 = {
   fontSize: "1.00rem",
   color: "#0B5733",
 };
+themeHeading.typography.subtitle2 = {
+  fontFamily: "Kreon, Roboto, sans-serif",
+  fontSize: "0.90rem",
+  color: "#0B5733",
+};
 
 function Heading1({ children, ...rest }) {
   return (
@@ -74,6 +79,14 @@ function Subtitle1({ children, ...rest }) {
     </ThemeProvider>
   );
 }
-
+function Subtitle2({ children, ...rest }) {
+  return (
+    <ThemeProvider theme={themeHeading}>
+      <Typography component="span" variant="subtitle2" {...rest}>
+        {children}
+      </Typography>
+    </ThemeProvider>
+  );
+}
 export default Heading1;
-export { Heading1, Heading2, Heading3, Heading4, Subtitle1 };
+export { Heading1, Heading2, Heading3, Heading4, Subtitle1, Subtitle2 };

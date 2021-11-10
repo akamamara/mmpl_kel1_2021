@@ -6,7 +6,7 @@ import InputText from "@/components/surfaces/Input";
 import Box from "@mui/material/Box";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { styled } from "@mui/material/styles";
-import { Subtitle1 } from "@/components/typography/Heading";
+import { Subtitle1, Subtitle2 } from "@/components/typography/Heading";
 
 const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
   <span ref={ref}>
@@ -22,9 +22,13 @@ const FormGaleri = ({ onChange, renderImages }) => {
   return (
     <>
       <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-        <Button color="success">Simpan</Button>
+        <Button color="success">
+          <Subtitle2>Simpan</Subtitle2>
+        </Button>
         <Link href="/berita">
-          <ButtonNext color="cancel">Batal</ButtonNext>
+          <ButtonNext color="cancel">
+            <Subtitle2>Batal</Subtitle2>
+          </ButtonNext>
         </Link>
       </Stack>
       <Box

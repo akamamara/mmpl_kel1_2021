@@ -1,10 +1,12 @@
 import AdminLayout from "../layouts/AdminLayout";
 import Biodata from "../sections/biodata/Biodata";
-
+import Container from "@/components/surfaces/Container";
 const ProfilPage = () => {
   return (
     <>
-      <Biodata />
+      <Container>
+        <Biodata />
+      </Container>
     </>
   );
 };

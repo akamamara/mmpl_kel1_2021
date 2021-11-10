@@ -4,13 +4,14 @@ import { RecordMataPelajaran } from "@/utils/table/TableRecord";
 import { VariableMataPelajaran } from "@/utils/table/TableVariable";
 import InputText from "@/components/surfaces/Input";
 import Button from "@/components/surfaces/Button";
+import { Subtitle2 } from "@/components/typography/Heading";
 
 const MataPelajaranPage = () => {
   return (
     <>
       <InputText label="Cari mata pelajaran" sx={{ width: "50%", mb: 1 }} />
       <Button color="success" sx={{ mb: 1 }}>
-        Tambah Mata Pelajaran
+        <Subtitle2>Tambah Mata Pelajaran</Subtitle2>
       </Button>
       <DenseTable
         record={RecordMataPelajaran}

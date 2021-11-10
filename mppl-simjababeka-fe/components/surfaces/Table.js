@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Subtitle2 } from "../typography/Heading";
 
 export default function DenseTable({ record, variable, actionable = false }) {
   return (
@@ -14,9 +15,15 @@ export default function DenseTable({ record, variable, actionable = false }) {
         <TableHead>
           <TableRow>
             {variable.map((item, index) => (
-              <TableCell key={index}>{item}</TableCell>
+              <TableCell key={index}>
+                <Subtitle2>{item}</Subtitle2>
+              </TableCell>
             ))}
-            {actionable ? <TableCell>Actions</TableCell> : null}
+            {actionable ? (
+              <TableCell>
+                <Subtitle2>Actions</Subtitle2>
+              </TableCell>
+            ) : null}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -25,9 +32,13 @@ export default function DenseTable({ record, variable, actionable = false }) {
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell>{index + 1}</TableCell>
+              <TableCell>
+                <Subtitle2>{index + 1}</Subtitle2>
+              </TableCell>
               {row.map((item, idx) => (
-                <TableCell key={idx}>{item}</TableCell>
+                <TableCell key={idx}>
+                  <Subtitle2>{item}</Subtitle2>
+                </TableCell>
               ))}
               {actionable ? (
                 <TableCell>

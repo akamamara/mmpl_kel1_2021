@@ -29,7 +29,7 @@ function InputText({ ...rest }) {
 
 function BasicSelect({ value, action, label, data }) {
   return (
-    <Box sx={{ minWidth: 120, width: "50%" }}>
+    <Box sx={{ minWidth: 120, width: "50%", mb: 1 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-autowidth-label">{label}</InputLabel>
         <Select

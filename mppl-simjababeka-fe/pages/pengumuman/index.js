@@ -6,6 +6,7 @@ import { VariablePengumuman } from "@/utils/table/TableVariable";
 import InputText from "@/components/surfaces/Input";
 import Button from "@/components/surfaces/Button";
 import Link from "next/link";
+import { Subtitle2 } from "@/components/typography/Heading";
 
 const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
   <span ref={ref}>
@@ -19,7 +20,7 @@ const PengumumanPage = () => {
       <InputText label="Cari judul pengumuman" sx={{ width: "50%", mb: 1 }} />
       <Link href="/pengumuman/tambahpengumuman" passHref>
         <ButtonNext color="success" sx={{ mb: 1 }}>
-          Tambah Pengumuman
+          <Subtitle2>Tambah Pengumuman</Subtitle2>
         </ButtonNext>
       </Link>
       <DenseTable
