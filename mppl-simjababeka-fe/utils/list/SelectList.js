@@ -9,4 +9,36 @@ const KelasList = [
   "Tingkat IV - Teknik Komputer dan Jaringan",
 ];
 
+const AgamaList = [
+  "Islam", //
+  "Kristen",
+  "Katolik",
+  "Hindu",
+  "Buddha",
+  "Konghucu",
+];
+
+const JenisKelaminList = [
+  "Laki-Laki", //
+  "Perempuan",
+];
+
+const GolonganDarahList = [
+  "-", //
+  "A",
+  "AB",
+  "B",
+  "O",
+];
+
+const DaftarMataPelajaran = [
+  "Fisika", //
+  "Kimia",
+  "Biologi",
+  "Matematika",
+  "Sejarah",
+  "Bahasa",
+];
+
 export default KelasList;
+export { AgamaList, JenisKelaminList, GolonganDarahList, DaftarMataPelajaran };
