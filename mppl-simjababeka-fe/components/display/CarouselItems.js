@@ -55,9 +55,9 @@ function CarouselItems({
 					<Buttons
 						variant="contained"
 						color="secondary"
-						text={actionTitle}
 						href={actionLink}
 						sx={{ marginTop: defaultTheme.spacing(3.5) }}
+						text={actionTitle}
 					/>
 				) : null}
 			</Container>
