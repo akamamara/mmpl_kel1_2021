@@ -1,4 +1,4 @@
-import AdminLayout from "../layouts/AdminLayout";
+import AdminLayout from "@/layouts/AdminLayout";
 import DenseTable from "@/components/surfaces/Table";
 import { RecordGuru } from "@/utils/table/TableRecord";
 import { VariableGuru } from "@/utils/table/TableVariable";

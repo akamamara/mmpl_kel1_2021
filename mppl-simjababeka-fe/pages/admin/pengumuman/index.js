@@ -18,7 +18,7 @@ const PengumumanPage = () => {
   return (
     <>
       <InputText label="Cari judul pengumuman" sx={{ width: "50%", mb: 1 }} />
-      <Link href="/pengumuman/tambahpengumuman" passHref>
+      <Link href="/admin/pengumuman/tambahpengumuman" passHref>
         <ButtonNext color="success" sx={{ mb: 1 }}>
           <Subtitle2>Tambah Pengumuman</Subtitle2>
         </ButtonNext>

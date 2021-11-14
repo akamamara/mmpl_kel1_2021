@@ -19,7 +19,7 @@ const FormPengumuman = () => {
         <Button color="success">
           <Subtitle2>Simpan</Subtitle2>
         </Button>
-        <Link href="/pengumuman">
+        <Link href="/admin/pengumuman">
           <ButtonNext color="cancel">
             <Subtitle2>Batal</Subtitle2>
           </ButtonNext>

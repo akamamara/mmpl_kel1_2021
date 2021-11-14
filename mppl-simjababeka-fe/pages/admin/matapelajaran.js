@@ -1,4 +1,4 @@
-import AdminLayout from "../layouts/AdminLayout";
+import AdminLayout from "@/layouts/AdminLayout";
 import DenseTable from "@/components/surfaces/Table";
 import { RecordMataPelajaran } from "@/utils/table/TableRecord";
 import { VariableMataPelajaran } from "@/utils/table/TableVariable";

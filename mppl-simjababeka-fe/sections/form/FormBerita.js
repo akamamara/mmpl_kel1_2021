@@ -19,7 +19,7 @@ const FormBerita = () => {
         <Button color="success">
           <Subtitle2>Simpan</Subtitle2>
         </Button>
-        <Link href="/berita">
+        <Link href="/admin/berita">
           <ButtonNext color="cancel">
             <Subtitle2>Batal</Subtitle2>
           </ButtonNext>

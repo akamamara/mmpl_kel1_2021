@@ -25,7 +25,7 @@ const FormGaleri = ({ onChange, renderImages }) => {
         <Button color="success">
           <Subtitle2>Simpan</Subtitle2>
         </Button>
-        <Link href="/berita">
+        <Link href="/admin/galeri">
           <ButtonNext color="cancel">
             <Subtitle2>Batal</Subtitle2>
           </ButtonNext>
