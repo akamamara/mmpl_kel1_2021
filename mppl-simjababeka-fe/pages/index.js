@@ -1,14 +1,19 @@
+import { Container } from "@mui/material";
+
 import NonLoginLayout from "@/layouts/NonLoginLayout";
-import { Card, CardImages, CardContent } from "@/components/surfaces/Card";
+import CarouselSection from "@/sections/beranda/Carousel";
+import JurusanSection from "@/sections/beranda/Jurusan";
+import Pengumuman_Berita from "@/sections/beranda/Pengumuman_Berita";
 
 function HomepageLayouts() {
 	return (
-		<div>
-			<Card>
-				<CardImages src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg" />
-				<CardContent>Hello world!</CardContent>
-			</Card>
-		</div>
+		<>
+			<CarouselSection />
+			<Container>
+				<JurusanSection />
+				<Pengumuman_Berita />
+			</Container>
+		</>
 	);
 }
 

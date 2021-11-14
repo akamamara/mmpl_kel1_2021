@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import { ThemeProvider, Container } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 
 import CarouselItems from "@/components/display/CarouselItems";
@@ -9,21 +9,21 @@ import CarouselList from "@/utils/list/CarouselDummy";
 function CarouselSection() {
 	return (
 		<Box mb={8}>
+			{/* <Carousel> */}
 			<ThemeProvider theme={defaultTheme}>
-				<Carousel animation="slide">
-					{CarouselList.map((item, index) => (
-						<CarouselItems
-							key={index}
-							imageSrc={item.imageSrc}
-							title={item.title}
-							description={item.description}
-							action={item.actionTitle.length ? true : false}
-							actionTitle={item.actionTitle}
-							actionLink={item.actionLink}
-						/>
-					))}
-				</Carousel>
+				{CarouselList.map((item, index) => (
+					<CarouselItems
+						key={index}
+						imageSrc={item.imageSrc}
+						title={item.title}
+						description={item.description}
+						action={item.actionTitle.length ? true : false}
+						actionTitle={item.actionTitle}
+						actionLink={item.actionLink}
+					/>
+				))}
 			</ThemeProvider>
+			{/* </Carousel> */}
 		</Box>
 	);
 }

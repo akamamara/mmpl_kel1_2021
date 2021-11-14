@@ -7,7 +7,7 @@ function NonLoginLayout({ children }) {
 	return (
 		<>
 			<Navbar />
-			<Container>{children}</Container>
+			{children}
 			<Footer />
 		</>
 	);
