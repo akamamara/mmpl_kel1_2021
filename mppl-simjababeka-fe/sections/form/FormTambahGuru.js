@@ -15,7 +15,6 @@ const FormTambahGuru = ({
   checkValue,
   checkData,
   handleCheckbox,
-  handleSelect,
   handleInput,
   handleSimpan,
 }) => {
