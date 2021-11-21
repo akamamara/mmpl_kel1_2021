@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import defaultTheme from "@/styles/global_mui";
 
-function Card({ horizontal = false, children }) {
+function Card({ horizontal = false, typeLink = false, children, ...rest }) {
 	return (
 		<ThemeProvider theme={defaultTheme}>
 			<Box
@@ -11,7 +11,9 @@ function Card({ horizontal = false, children }) {
 					borderRadius: defaultTheme.spacing(2),
 					display: horizontal ? "flex" : null,
 					alignItems: horizontal ? "flex-end" : null,
+					cursor: typeLink ? "pointer" : "default",
 				}}
+				{...rest}
 			>
 				{children}
 			</Box>
@@ -27,6 +29,7 @@ function CardImages({ src, horizontal = false }) {
 				width: horizontal ? defaultTheme.spacing(21) : undefined,
 				backgroundColor: src ? "" : "common.black",
 				backgroundImage: src ? `url(${src})` : "",
+				backgroundSize: "cover",
 				borderRadius: horizontal
 					? `${defaultTheme.spacing(2)} 0 0 ${defaultTheme.spacing(2)}`
 					: `${defaultTheme.spacing(2)} ${defaultTheme.spacing(2)} 0 0`,
