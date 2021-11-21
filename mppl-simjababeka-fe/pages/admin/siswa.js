@@ -1,5 +1,5 @@
 import * as React from "react";
-import AdminLayout from "../layouts/AdminLayout";
+import AdminLayout from "@/layouts/AdminLayout";
 import DenseTable from "@/components/surfaces/Table";
 import RecordSiswa from "@/utils/table/TableRecord";
 import VariableSiswa from "@/utils/table/TableVariable";

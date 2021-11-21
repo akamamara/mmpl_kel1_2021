@@ -18,7 +18,7 @@ const BeritaPage = () => {
   return (
     <>
       <InputText label="Cari judul berita" sx={{ width: "50%", mb: 1 }} />
-      <Link href="/berita/tambahberita" passHref>
+      <Link href="/admin/berita/tambahberita" passHref>
         <ButtonNext color="success" sx={{ mb: 1 }}>
           <Subtitle2>Tambah Berita</Subtitle2>
         </ButtonNext>

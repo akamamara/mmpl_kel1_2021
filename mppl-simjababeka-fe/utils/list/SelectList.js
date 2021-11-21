@@ -40,5 +40,24 @@ const DaftarMataPelajaran = [
   "Bahasa",
 ];
 
+const TingkatList = [
+  "Tingkat I", //
+  "Tingkat II",
+  "Tingkat III",
+  "Tingkat IV",
+];
+
+const JurusanList = [
+  "Teknik Kendaraan Ringan Otomotif", //
+  "Teknik Komputer dan Jaringan",
+];
+
 export default KelasList;
-export { AgamaList, JenisKelaminList, GolonganDarahList, DaftarMataPelajaran };
+export {
+  AgamaList,
+  JenisKelaminList,
+  GolonganDarahList,
+  DaftarMataPelajaran,
+  TingkatList,
+  JurusanList,
+};

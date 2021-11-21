@@ -1,5 +1,5 @@
 import * as React from "react";
-import AdminLayout from "../layouts/AdminLayout";
+import AdminLayout from "@/layouts/AdminLayout";
 import { Heading3 } from "@/components/typography/Heading";
 import {
   AgamaList,

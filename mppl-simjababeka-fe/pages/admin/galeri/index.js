@@ -18,7 +18,7 @@ const GaleriPage = () => {
   return (
     <>
       <InputText label="Cari judul foto" sx={{ width: "50%", mb: 1 }} />
-      <Link href="/galeri/tambahgaleri" passHref>
+      <Link href="/admin/galeri/tambahgaleri" passHref>
         <ButtonNext color="success" sx={{ mb: 1 }}>
           <Subtitle2>Tambah Foto</Subtitle2>
         </ButtonNext>
