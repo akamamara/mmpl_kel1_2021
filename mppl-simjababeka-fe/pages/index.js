@@ -18,7 +18,7 @@ function HomepageLayouts() {
 }
 
 HomepageLayouts.getLayout = (page) => {
-	return <NonLoginLayout>{page}</NonLoginLayout>;
+	return <NonLoginLayout container={false}>{page}</NonLoginLayout>;
 };
 
 export default HomepageLayouts;

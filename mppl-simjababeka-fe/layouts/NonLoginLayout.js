@@ -3,11 +3,11 @@ import { Container } from "@mui/material";
 import Navbar from "@/sections/navigation/Navbar";
 import Footer from "@/sections/navigation/Footer";
 
-function NonLoginLayout({ children }) {
+function NonLoginLayout({ children, container = true }) {
 	return (
 		<>
 			<Navbar />
-			{children}
+			{container ? <Container>{children}</Container> : children}
 			<Footer />
 		</>
 	);
