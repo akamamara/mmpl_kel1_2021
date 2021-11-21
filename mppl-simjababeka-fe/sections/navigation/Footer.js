@@ -40,12 +40,13 @@ function Footer() {
 									<Heading4 mb={2} color="common.white">
 										Tautan Kami
 									</Heading4>
-									{NavbarList.map((item) => (
+									{NavbarList.map((item, index) => (
 										<p key={item}>
 											<Link
 												color="common.white"
 												underline="hover"
 												variant="body2"
+												href={index === 0 ? "/" : item.toLowerCase()}
 											>
 												{item}
 											</Link>

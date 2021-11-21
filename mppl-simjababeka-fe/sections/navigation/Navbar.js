@@ -35,7 +35,7 @@ function Navbar() {
 	return (
 		<ThemeProvider theme={theme}>
 			<ElevationScroll>
-				<AppBar position="sticky" color="primary">
+				<AppBar position="sticky" color="primary" sx={{ zIndex: 990 }}>
 					<Container sx={{ padding: "1.25rem 0 1.25rem 0" }}>
 						<Grid
 							container
