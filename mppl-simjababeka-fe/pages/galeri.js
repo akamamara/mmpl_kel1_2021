@@ -43,7 +43,13 @@ function GaleriPage() {
 							>
 								<CardImages src={GaleriList.img[0]} />
 								<CardContent>
-									<Body1>{GaleriList.title}</Body1>
+									<Body1>
+										<b>{GaleriList.title}</b>
+									</Body1>
+									<Body1 sx={{ marginTop: 1, opacity: 0.6 }}>
+										{GaleriList.description.split(".").slice(0, 2).join(".") +
+											"..."}
+									</Body1>
 								</CardContent>
 							</Card>
 						</Grid>

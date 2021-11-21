@@ -69,13 +69,26 @@ function GaleriCarousel({ items, openHandler }) {
 						</Carousel>
 					</Grid>
 					<Grid item xs={7}>
-						<Heading2 color="common.white">{items.title}</Heading2>
-						<Body1
-							sx={{ marginTop: defaultTheme.spacing(2) }}
-							color="common.white"
+						<Box
+							sx={{
+								display: "flex",
+								flexDirection: "column",
+								justifyContent: "center",
+							}}
 						>
-							{items.description}
-						</Body1>
+							<Heading2 color="common.white">{items.title}</Heading2>
+							<Body1
+								sx={{
+									marginTop: defaultTheme.spacing(2),
+									opacity: 0.8,
+									overflowY: "auto",
+									maxHeight: "60vh",
+								}}
+								color="common.white"
+							>
+								{items.description}
+							</Body1>
+						</Box>
 					</Grid>
 				</Grid>
 			</Container>
