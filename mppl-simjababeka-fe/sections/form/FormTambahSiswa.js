@@ -6,7 +6,13 @@ import { Subtitle2 } from "@/components/typography/Heading";
 import { Box } from "@mui/system";
 import Buttons from "@/components/surfaces/Button";
 
-const FormTambahSiswa = ({ handleChange, checkValue, checkData }) => {
+const FormTambahSiswa = ({
+  handleChange,
+  checkValue,
+  checkData,
+  handleInput,
+  handleSimpan,
+}) => {
   return (
     <>
       <Container>
@@ -22,13 +28,17 @@ const FormTambahSiswa = ({ handleChange, checkValue, checkData }) => {
                 data={checkData(title)}
               />
             ) : (
-              <InputText sx={{ width: "100%", mb: 1 }} />
+              <InputText
+                name={title}
+                sx={{ width: "100%", mb: 1 }}
+                onChange={handleInput}
+              />
             )}
           </Box>
         ))}
 
         <Box sx={{ display: "flex", flexDirection: "row-reverse" }}>
-          <Buttons color="success">
+          <Buttons color="success" onClick={handleSimpan}>
             <Subtitle2>Simpan</Subtitle2>
           </Buttons>
         </Box>
