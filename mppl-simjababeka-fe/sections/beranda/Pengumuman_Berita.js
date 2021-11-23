@@ -2,7 +2,7 @@ import { Grid, Box, ThemeProvider } from "@mui/material";
 
 import { Card, CardImages, CardContent } from "@/components/surfaces/Card";
 import { Heading2 } from "@/components/typography/Heading";
-import Buttons from "@/components/Button";
+import Buttons from "@/components/input/Button";
 import defaultTheme from "@/styles/global_mui";
 
 function Pengumuman_Berita() {
@@ -26,6 +26,7 @@ function Pengumuman_Berita() {
 								variant="contained"
 								color="secondary"
 								text="Selengkapnya"
+								href="pengumuman"
 							/>
 						</Grid>
 					</Box>
@@ -61,6 +62,7 @@ function Pengumuman_Berita() {
 								variant="contained"
 								color="secondary"
 								text="Selengkapnya"
+								href="/berita"
 							/>
 						</Grid>
 					</Box>
