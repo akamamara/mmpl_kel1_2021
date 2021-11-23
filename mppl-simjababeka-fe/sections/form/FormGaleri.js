@@ -18,6 +18,7 @@ const Input = styled("input")({
 	display: "none",
 });
 
+<<<<<<< HEAD
 const FormGaleri = ({ onChange, renderImages }) => {
 	return (
 		<>
@@ -57,6 +58,48 @@ const FormGaleri = ({ onChange, renderImages }) => {
 			</Box>
 		</>
 	);
+=======
+const FormGaleri = ({ onChange, renderImages, simpanHandler }) => {
+  return (
+    <>
+      <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+        <Button color="success" onClick={simpanHandler}>
+          <Subtitle2>Simpan</Subtitle2>
+        </Button>
+        <Link href="/admin/galeri">
+          <ButtonNext color="cancel">
+            <Subtitle2>Batal</Subtitle2>
+          </ButtonNext>
+        </Link>
+      </Stack>
+      <Box
+        sx={{
+          width: "100%",
+        }}
+      >
+        <InputText label="Judul" sx={{ mb: 1, width: "100%" }} />
+        <InputText label="Keterangan" sx={{ mb: 1, width: "100%" }} />
+        <label htmlFor="contained-button-file">
+          <Input
+            accept="image/*"
+            id="contained-button-file"
+            multiple
+            type="file"
+            onChange={onChange}
+          />
+          <Button component="span" color="success">
+            <PhotoCamera />
+            {/* <Typography sx={{ ml: 1 }}>Upload Foto</Typography> */}
+            <Subtitle1 sx={{ ml: 1 }}>Upload Foto</Subtitle1>
+          </Button>
+        </label>
+        <Stack direction="row" sx={{ mt: 1 }}>
+          {renderImages}
+        </Stack>
+      </Box>
+    </>
+  );
+>>>>>>> 408ae0228086b96cb2abb93581be734d79189cd6
 };
 
 export default FormGaleri;
