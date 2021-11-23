@@ -1,6 +1,6 @@
 import { Box, Container } from "@mui/material";
 
-import Buttons from "@/components/Button";
+import Buttons from "@/components/input/Button";
 import { Heading1 } from "@/components/typography/Heading";
 import { Body1 } from "@/components/typography/Body";
 import defaultTheme from "@/styles/global_mui";
