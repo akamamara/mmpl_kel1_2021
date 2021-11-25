@@ -27,7 +27,7 @@ export default function DenseTable({ record, variable, actionable = false }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {record.map((row, index) => (
+          {record.map(Object.values).map((row, index) => (
             <TableRow
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
