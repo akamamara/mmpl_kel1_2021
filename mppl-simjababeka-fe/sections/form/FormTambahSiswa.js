@@ -38,7 +38,12 @@ const FormTambahSiswa = ({
         ))}
 
         <Box sx={{ display: "flex", flexDirection: "row-reverse" }}>
-          <Buttons color="success" onClick={handleSimpan}>
+          <Buttons
+            variant="contained"
+            size="small"
+            color="success"
+            onClick={handleSimpan}
+          >
             <Subtitle2>Simpan</Subtitle2>
           </Buttons>
         </Box>

@@ -10,7 +10,9 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
   <span ref={ref}>
-    <Button {...rest}>{children}</Button>
+    <Button variant="contained" size="small" {...rest}>
+      {children}
+    </Button>
   </span>
 ));
 
@@ -22,7 +24,7 @@ const FormPengumuman = ({ onChange, renderImages }) => {
   return (
     <>
       <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-        <Button color="success">
+        <Button variant="contained" size="small" color="success">
           <Subtitle2>Simpan</Subtitle2>
         </Button>
         <Link href="/admin/pengumuman">
@@ -50,7 +52,12 @@ const FormPengumuman = ({ onChange, renderImages }) => {
             type="file"
             onChange={onChange}
           />
-          <Button component="span" color="success">
+          <Button
+            variant="contained"
+            size="small"
+            component="span"
+            color="success"
+          >
             <PhotoCamera />
             {/* <Typography sx={{ ml: 1 }}>Upload Foto</Typography> */}
             <Subtitle1 sx={{ ml: 1 }}>Upload Foto</Subtitle1>

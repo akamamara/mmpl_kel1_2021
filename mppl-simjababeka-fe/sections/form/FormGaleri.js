@@ -10,7 +10,9 @@ import { Subtitle1, Subtitle2 } from "@/components/typography/Heading";
 
 const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
   <span ref={ref}>
-    <Button {...rest}>{children}</Button>
+    <Button variant="contained" size="small" {...rest}>
+      {children}
+    </Button>
   </span>
 ));
 
@@ -22,7 +24,12 @@ const FormGaleri = ({ onChange, renderImages, simpanHandler }) => {
   return (
     <>
       <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-        <Button color="success" onClick={simpanHandler}>
+        <Button
+          variant="contained"
+          size="small"
+          color="success"
+          onClick={simpanHandler}
+        >
           <Subtitle2>Simpan</Subtitle2>
         </Button>
         <Link href="/admin/galeri">
@@ -46,7 +53,12 @@ const FormGaleri = ({ onChange, renderImages, simpanHandler }) => {
             type="file"
             onChange={onChange}
           />
-          <Button component="span" color="success">
+          <Button
+            variant="contained"
+            size="small"
+            component="span"
+            color="success"
+          >
             <PhotoCamera />
             {/* <Typography sx={{ ml: 1 }}>Upload Foto</Typography> */}
             <Subtitle1 sx={{ ml: 1 }}>Upload Foto</Subtitle1>
