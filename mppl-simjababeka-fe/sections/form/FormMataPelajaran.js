@@ -14,11 +14,21 @@ const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
   </span>
 ));
 
-const FormMataPelajaran = ({ handleKelas, handleJurusan }) => {
+const FormMataPelajaran = ({
+  handleKelas,
+  handleJurusan,
+  handleInput,
+  handleSimpan,
+}) => {
   return (
     <>
       <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-        <Button variant="contained" size="small" color="success">
+        <Button
+          variant="contained"
+          size="small"
+          color="success"
+          onClick={handleSimpan}
+        >
           <Subtitle2>Simpan</Subtitle2>
         </Button>
         <Link href="/admin/matapelajaran">
@@ -32,7 +42,12 @@ const FormMataPelajaran = ({ handleKelas, handleJurusan }) => {
           width: "100%",
         }}
       >
-        <InputText label="Judul" sx={{ mb: 1, width: "100%" }} />
+        <InputText
+          name="Judul"
+          label="Judul"
+          sx={{ mb: 1, width: "100%" }}
+          onChange={handleInput}
+        />
         <BasicSelect
           action={(e) => handleKelas.handleChange(e)}
           value={handleKelas.checkValue()}

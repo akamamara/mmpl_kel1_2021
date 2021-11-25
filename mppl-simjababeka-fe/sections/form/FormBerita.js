@@ -20,11 +20,22 @@ const Input = styled("input")({
   display: "none",
 });
 
-const FormBerita = ({ onChange, renderImages }) => {
+const FormBerita = ({
+  onChange,
+  renderImages,
+  handleJudul,
+  handleDeskripsi,
+  simpanHandler,
+}) => {
   return (
     <>
       <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-        <Button variant="contained" size="small" color="success">
+        <Button
+          variant="contained"
+          size="small"
+          color="success"
+          onClick={simpanHandler}
+        >
           <Subtitle2>Simpan</Subtitle2>
         </Button>
         <Link href="/admin/berita">
@@ -38,12 +49,17 @@ const FormBerita = ({ onChange, renderImages }) => {
           width: "100%",
         }}
       >
-        <InputText label="Judul" sx={{ mb: 1, width: "100%" }} />
+        <InputText
+          label="Judul"
+          sx={{ mb: 1, width: "100%" }}
+          onChange={handleJudul}
+        />
         <InputText
           label="Deskripsi"
           multiline
           rows={20}
           sx={{ width: "100%", mb: 1 }}
+          onChange={handleDeskripsi}
         />
         <label htmlFor="contained-button-file">
           <Input

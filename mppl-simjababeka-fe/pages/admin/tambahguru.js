@@ -69,8 +69,9 @@ const TambahGuruPage = () => {
         password2: result["Confirm Password"],
       };
       console.log(simpan);
+    } else {
+      console.log("Isi formnya ya");
     }
-    // console.log(isEmpty);
   };
 
   return (

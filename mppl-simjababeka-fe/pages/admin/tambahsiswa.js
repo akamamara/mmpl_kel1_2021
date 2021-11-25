@@ -83,8 +83,9 @@ const TambahSiswaPage = () => {
         password2: result["Confirm Password"],
       };
       console.log(simpan);
+    } else {
+      console.log("Isi formnya ya");
     }
-    console.log(result);
   };
 
   return (

@@ -20,7 +20,13 @@ const Input = styled("input")({
   display: "none",
 });
 
-const FormGaleri = ({ onChange, renderImages, simpanHandler }) => {
+const FormGaleri = ({
+  onChange,
+  renderImages,
+  handleJudul,
+  handleKeterangan,
+  simpanHandler,
+}) => {
   return (
     <>
       <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
@@ -43,8 +49,16 @@ const FormGaleri = ({ onChange, renderImages, simpanHandler }) => {
           width: "100%",
         }}
       >
-        <InputText label="Judul" sx={{ mb: 1, width: "100%" }} />
-        <InputText label="Keterangan" sx={{ mb: 1, width: "100%" }} />
+        <InputText
+          label="Judul"
+          sx={{ mb: 1, width: "100%" }}
+          onChange={handleJudul}
+        />
+        <InputText
+          label="Keterangan"
+          sx={{ mb: 1, width: "100%" }}
+          onChange={handleKeterangan}
+        />
         <label htmlFor="contained-button-file">
           <Input
             accept="image/*"
