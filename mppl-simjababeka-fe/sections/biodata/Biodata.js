@@ -116,7 +116,9 @@ export default function Biodata({ dialogHandler, open }) {
               <Subtitle2>{title}</Subtitle2>
               {title === "Agama" ||
               title === "Golongan Darah" ||
-              title === "Jenis Kelamin" ? (
+              title === "Jenis Kelamin" ||
+              title === "Kelas" ||
+              title === "Jurusan" ? (
                 <BasicSelect
                   action={(e) => dialogHandler.handleChange(e, title)}
                   value={dialogHandler.checkValue(title)}

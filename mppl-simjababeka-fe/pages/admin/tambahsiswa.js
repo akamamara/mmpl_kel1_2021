@@ -5,6 +5,8 @@ import {
   AgamaList,
   GolonganDarahList,
   JenisKelaminList,
+  TingkatList,
+  JurusanList,
 } from "@/utils/list/SelectList";
 import FormTambahSiswa from "@/sections/form/FormTambahSiswa";
 
@@ -13,6 +15,8 @@ const TambahSiswaPage = () => {
   const [agama, setAgama] = React.useState("");
   const [golonganDarah, setGolonganDarah] = React.useState("");
   const [jenisKelamin, setJenisKelamin] = React.useState("");
+  const [jurusan, setJurusan] = React.useState("");
+  const [tingkat, setTingkat] = React.useState("");
 
   const handleChange = (event, title) => {
     if (title === "Agama") {
@@ -24,6 +28,12 @@ const TambahSiswaPage = () => {
     } else if (title === "Jenis Kelamin") {
       setResult({ ...result, [title]: event.target.value });
       setJenisKelamin(event.target.value);
+    } else if (title === "Kelas") {
+      setResult({ ...result, [title]: event.target.value });
+      setTingkat(event.target.value);
+    } else if (title === "Jurusan") {
+      setResult({ ...result, [title]: event.target.value });
+      setJurusan(event.target.value);
     }
   };
 
@@ -34,6 +44,10 @@ const TambahSiswaPage = () => {
       return golonganDarah;
     } else if (title === "Jenis Kelamin") {
       return jenisKelamin;
+    } else if (title === "Kelas") {
+      return tingkat;
+    } else if (title === "Jurusan") {
+      return jurusan;
     }
   };
 
@@ -44,6 +58,10 @@ const TambahSiswaPage = () => {
       return GolonganDarahList;
     } else if (title === "Jenis Kelamin") {
       return JenisKelaminList;
+    } else if (title === "Kelas") {
+      return TingkatList;
+    } else if (title === "Jurusan") {
+      return JurusanList;
     }
   };
 

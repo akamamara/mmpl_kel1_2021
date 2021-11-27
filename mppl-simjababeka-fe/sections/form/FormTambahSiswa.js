@@ -21,7 +21,9 @@ const FormTambahSiswa = ({
             <Subtitle2>{title}</Subtitle2>
             {title === "Agama" ||
             title === "Golongan Darah" ||
-            title === "Jenis Kelamin" ? (
+            title === "Jenis Kelamin" ||
+            title === "Kelas" ||
+            title === "Jurusan" ? (
               <BasicSelect
                 action={(e) => handleChange(e, title)}
                 value={checkValue(title)}
