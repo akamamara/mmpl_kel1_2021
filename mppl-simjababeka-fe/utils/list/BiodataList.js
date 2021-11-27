@@ -1,6 +1,7 @@
 const DataPribadiLabel = [
   "Nama", //
   "NISN",
+  "Email",
   "Jenis Kelamin",
   "Jurusan",
   "Tempat, Tanggal Lahir",
@@ -15,13 +16,14 @@ const DataPribadi = [
   {
     nama: "Raiden Ei",
     nisn: "g6142144124",
+    email: "raidenbaal@gmail.com",
     jenisKelamin: "Perempuan",
     jurusan: "teknik elektro",
     ttl: "Inazuma",
     alamat: "inazuma city",
     agama: "shinto",
-    goldar: "-",
     noTelp: "032141234124",
+    goldar: "-",
   },
 ];
 
@@ -38,14 +40,14 @@ const DataOrangTuaLabel = [
 
 const DataOrangTua = [
   {
-    namaAyah: "Unknown",
-    namaIbu: "Unknown",
-    noTelpAyah: "ELEG",
-    noTelpIbu: "Unknown",
-    alamatAyah: "Lul",
-    alamatIbu: "Unknown",
-    pekerjaanAyah: "4Head",
-    pekerjaanIbu: "Unknown",
+    namaAyah: "**Future improvement**",
+    namaIbu: "**Future improvement**",
+    noTelpAyah: "**Future improvement**",
+    noTelpIbu: "**Future improvement**",
+    alamatAyah: "**Future improvement**",
+    alamatIbu: "**Future improvement**",
+    pekerjaanAyah: "**Future improvement**",
+    pekerjaanIbu: "**Future improvement**",
   },
 ];
 

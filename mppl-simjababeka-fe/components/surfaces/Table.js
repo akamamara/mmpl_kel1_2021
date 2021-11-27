@@ -6,9 +6,18 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Subtitle2 } from "../typography/Heading";
+import Buttons from "../input/Button";
 
-export default function DenseTable({ record, variable, actionable = false }) {
+export default function DenseTable({
+  record,
+  variable,
+  actionable = false,
+  handleEdit,
+  handleHapus,
+}) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -32,7 +41,7 @@ export default function DenseTable({ record, variable, actionable = false }) {
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell>
+              <TableCell sx={{ width: "50px" }}>
                 <Subtitle2>{index + 1}</Subtitle2>
               </TableCell>
               {row.map((item, idx) => (
@@ -42,8 +51,22 @@ export default function DenseTable({ record, variable, actionable = false }) {
               ))}
               {actionable ? (
                 <TableCell>
-                  <button>Edit</button>
-                  <button>Hapus</button>
+                  <Buttons
+                    variant="contained"
+                    size="small"
+                    color="success"
+                    onClick={handleEdit}
+                  >
+                    <EditIcon />
+                  </Buttons>
+                  <Buttons
+                    variant="contained"
+                    size="small"
+                    color="cancel"
+                    onClick={handleHapus}
+                  >
+                    <DeleteIcon />
+                  </Buttons>
                 </TableCell>
               ) : null}
             </TableRow>
