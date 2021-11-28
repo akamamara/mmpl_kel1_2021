@@ -41,7 +41,37 @@ const TambahGuruPage = () => {
   };
 
   const handleSimpan = () => {
-    console.log(result);
+    // const isEmpty = !Object.values(result).some((x) => x !== null && x !== "");
+    if (
+      result["Nama"] &&
+      result["Email"] &&
+      result["NIP"] &&
+      result["Pendidikan (Gelar)"] &&
+      result["Mata Pelajaran yang Diampu"] &&
+      result["Tempat, Tanggal Lahir"] &&
+      result["No. Telepon"] &&
+      result["Alamat"] &&
+      result["Jenis Kelamin"] &&
+      result["Password"] &&
+      result["Confirm Password"]
+    ) {
+      const simpan = {
+        nama: result["Nama"],
+        email: result["Email"],
+        nip: result["NIP"],
+        pendidikan: result["Pendidikan (Gelar)"],
+        mapelDiampu: result["Mata Pelajaran yang Diampu"],
+        ttl: result["Tempat, Tanggal Lahir"],
+        noTelp: result["No. Telepon"],
+        alamat: result["Alamat"],
+        jk: result["Jenis Kelamin"],
+        password: result["Password"],
+        password2: result["Confirm Password"],
+      };
+      console.log(simpan);
+    } else {
+      console.log("Isi formnya ya");
+    }
   };
 
   return (

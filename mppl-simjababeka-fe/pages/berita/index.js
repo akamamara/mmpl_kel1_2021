@@ -5,13 +5,13 @@ import { CardContent, CardImages, Card } from "@/components/surfaces/Card";
 import { Title } from "@/components/typography/Heading";
 import Body1 from "@/components/typography/Body";
 
-function PengumumanPage() {
+function BeritaPage() {
 	return (
 		<Box mt={7}>
 			<Title>Berita</Title>
 			<Grid container spacing={3}>
-				{Array.from({ length: 16 }, (_) => (
-					<Grid item xs={3}>
+				{Array.from({ length: 16 }, (_, index) => (
+					<Grid item xs={3} key={index}>
 						<Card>
 							<CardImages />
 							<CardContent>
@@ -32,8 +32,8 @@ function PengumumanPage() {
 	);
 }
 
-PengumumanPage.getLayout = (page) => {
+BeritaPage.getLayout = (page) => {
 	return <NonLoginLayout>{page}</NonLoginLayout>;
 };
 
-export default PengumumanPage;
+export default BeritaPage;

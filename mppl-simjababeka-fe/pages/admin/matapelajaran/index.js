@@ -3,14 +3,16 @@ import AdminLayout from "@/layouts/AdminLayout";
 import DenseTable from "@/components/surfaces/Table";
 import { RecordMataPelajaran } from "@/utils/table/TableRecord";
 import { VariableMataPelajaran } from "@/utils/table/TableVariable";
-import InputText from "@/components/surfaces/Input";
+import InputText from "@/components/input/Input";
 import Link from "next/link";
-import Button from "@/components/surfaces/Button";
+import Button from "@/components/input/Button";
 import { Subtitle2 } from "@/components/typography/Heading";
 
 const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
   <span ref={ref}>
-    <Button {...rest}>{children}</Button>
+    <Button variant="contained" size="small" {...rest}>
+      {children}
+    </Button>
   </span>
 ));
 

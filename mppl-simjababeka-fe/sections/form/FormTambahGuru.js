@@ -3,11 +3,11 @@ import Container from "@/components/surfaces/Container";
 import InputText, {
   BasicSelect,
   CheckboxSelect,
-} from "@/components/surfaces/Input";
+} from "@/components/input/Input";
 import { TambahGuru } from "@/utils/list/FormList";
 import { Subtitle2 } from "@/components/typography/Heading";
 import { Box } from "@mui/system";
-import Buttons from "@/components/surfaces/Button";
+import Buttons from "@/components/input/Button";
 import { DaftarMataPelajaran } from "@/utils/list/SelectList";
 
 const FormTambahGuru = ({
@@ -46,7 +46,12 @@ const FormTambahGuru = ({
         ))}
 
         <Box sx={{ display: "flex", flexDirection: "row-reverse" }}>
-          <Buttons color="success" onClick={handleSimpan}>
+          <Buttons
+            variant="contained"
+            size="small"
+            color="success"
+            onClick={handleSimpan}
+          >
             <Subtitle2>Simpan</Subtitle2>
           </Buttons>
         </Box>

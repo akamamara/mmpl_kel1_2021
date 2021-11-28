@@ -34,11 +34,21 @@ const TambahMataPelajaran = () => {
     },
   };
 
+  const handleInput = (event) => {
+    setResult({ ...result, [event.target.name]: event.target.value });
+  };
+
+  const handleSimpan = () => {
+    console.log(result);
+  };
+
   return (
     <>
       <FormMataPelajaran
         handleKelas={handleKelas}
         handleJurusan={handleJurusan}
+        handleInput={handleInput}
+        handleSimpan={handleSimpan}
       />
     </>
   );

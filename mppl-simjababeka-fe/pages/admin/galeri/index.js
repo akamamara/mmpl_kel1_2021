@@ -3,14 +3,16 @@ import AdminLayout from "@/layouts/AdminLayout";
 import DenseTable from "@/components/surfaces/Table";
 import { RecordGaleri } from "@/utils/table/TableRecord";
 import { VariableGaleri } from "@/utils/table/TableVariable";
-import InputText from "@/components/surfaces/Input";
-import Button from "@/components/surfaces/Button";
+import InputText from "@/components/input/Input";
+import Button from "@/components/input/Button";
 import Link from "next/link";
 import { Subtitle2 } from "@/components/typography/Heading";
 
 const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
   <span ref={ref}>
-    <Button {...rest}>{children}</Button>
+    <Button variant="contained" size="small" {...rest}>
+      {children}
+    </Button>
   </span>
 ));
 
