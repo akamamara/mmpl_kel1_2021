@@ -6,65 +6,56 @@ from django.db.models.deletion import CASCADE
 from django.utils.translation import gettext as _
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, password=None, **kwargs):
+    def create_user(self, email, user_type, password=None, **kwargs):
         if not email:
             raise ValueError("Harap masukkan email")
         if not password:
             raise ValueError("Harap masukkan password")
-        if not first_name:
-            raise ValueError("Harap masukkan nama depan")
-        if not last_name:
-            raise ValueError("Harap masukkan nama belakang")
+        if not user_type:
+            raise ValueError("Harap pilih tipe akun")
 
         user = self.model(
             email = self.normalize_email(email)
         )
-        user.first_name = first_name
-        user.last_name = last_name
         user.set_password(password)
+        user.user_type = user_type
         user.is_admin = False
         user.is_staff = False
         user.is_superuser = False
         user.save(using=self.db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, password=None, **kwargs):
+    def create_superuser(self, email, password=None, **kwargs):
         if not email:
             raise ValueError("Harap masukkan email")
         if not password:
             raise ValueError("Harap masukkan password")
-        if not first_name:
-            raise ValueError("Harap masukkan nama depan")
-        if not last_name:
-            raise ValueError("Harap masukkan nama belakang")
+        # if not user_type:
+        #     raise ValueError("Harap pilih tipe akun")
         
         user = self.model(
             email = self.normalize_email(email)
         )
-        user.first_name = first_name
-        user.last_name = last_name
         user.set_password(password)
+        # user.user_type = user_type
         user.is_admin = True
         user.is_staff = True
         user.is_superuser = True
         user.save(using=self.db)
         return user
 
-    def create_staffuser(self, email, first_name, last_name, password=None, **kwargs):
+    def create_staffuser(self, email, user_type, password=None, **kwargs):
         if not email:
             raise ValueError("Harap masukkan email")
         if not password:
             raise ValueError("Harap masukkan password")
-        if not first_name:
-            raise ValueError("Harap masukkan nama depan")
-        if not last_name:
-            raise ValueError("Harap masukkan nama belakang")
-        
+        if not user_type:
+            raise ValueError("Harap pilih tipe akun")
+
         user = self.model(
             email = self.normalize_email(email)
         )
-        user.first_name = first_name
-        user.last_name = last_name
+        user.user_type = user_type
         user.set_password(password)
         user.is_admin = False
         user.is_staff = True
@@ -78,16 +69,20 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         (ADMIN, _('Admin User')),
         (STAFF, _('Staff User')),
     ]
+    USER_TYPE_CHOICES = (
+      (1, 'guru'),
+      (2, 'siswa'),
+      )
+
     email = models.EmailField(_('email address'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=30)
-    last_name = models.CharField(_('last name'), max_length=30)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
 
@@ -97,4 +92,4 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return True
 
     def __str__(self):
-        return f"{self.email}"
+        return str(self.email)

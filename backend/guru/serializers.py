@@ -9,23 +9,26 @@ class GuruSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = [
-            'id', 'email', 'first_name', 'last_name',
+            'id', 'email', 'user_type',
         ]
 
 class RegisterSerializer(serializers.ModelSerializer):
+    USER_TYPE_CHOICES = (
+      (1, 'guru'),
+      (2, 'siswa'),
+      )
     email = serializers.EmailField(
         required = True,
         validators = [UniqueValidator(queryset=CustomUser.objects.all())]
     )
-    first_name = serializers.CharField(max_length=30)
-    last_name = serializers.CharField(max_length=30)
+    user_type = serializers.ChoiceField(choices=USER_TYPE_CHOICES, required=True)
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
 
     class Meta:
         model = CustomUser
         fields = (
-            'email', 'first_name', 'last_name','password', 'password2',
+            'email', 'password', 'password2', 'user_type',
         )
         extra_kwargs = {
             'password': {'write_only': True},
@@ -40,9 +43,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = CustomUser.objects.create_user(
             email = validated_data['email'],
-            first_name = validated_data['first_name'],
-            last_name = validated_data['last_name'],
             password = validated_data['password'],
+            user_type = validated_data['user_type'],
         )
 
         # user.set_password(validated_data['password'])
