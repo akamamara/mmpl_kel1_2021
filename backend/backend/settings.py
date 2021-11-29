@@ -41,6 +41,9 @@ INSTALLED_APPS = [
 
     # local
     'guru',
+    'mapel',
+    'berita',
+    'pengumuman',
     'profil.apps.ProfilConfig',
 ]
 

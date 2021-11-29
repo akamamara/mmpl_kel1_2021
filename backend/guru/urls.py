@@ -4,6 +4,6 @@ from .views import GuruList, RegisterView
 
 
 urlpatterns = [
-    path('', GuruList.as_view()),
+    path('users/', GuruList.as_view()), # ini sebenarnya endpoint utk list semua user yang sudah daftar
     path('register/', RegisterView.as_view()),
 ]

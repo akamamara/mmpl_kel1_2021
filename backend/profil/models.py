@@ -1,5 +1,6 @@
 from django.db import models
 from guru.models import CustomUser
+from mapel.models import MataPelajaran
 from django.db.models.deletion import CASCADE
 from django.utils.translation import gettext as _
 
@@ -9,7 +10,7 @@ class Profil(models.Model):
     nip = models.CharField(max_length=30, null=True)
     tempat_lahir = models.CharField(max_length=50, null=True)
     tanggal_lahir = models.DateField(null=True, blank=True)
-    mapel_id = models.IntegerField(null=True)
+    mapel_id = models.ForeignKey(MataPelajaran, on_delete=models.SET_NULL, blank=True, null=True, related_name='pengajar')
     no_telp = models.IntegerField(null=True)
     pendidikan = models.CharField(max_length=50, null=True)
     foto_guru = models.ImageField(upload_to='images/', blank=True, null=True)
