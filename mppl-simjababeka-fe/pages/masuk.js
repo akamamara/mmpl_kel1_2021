@@ -12,16 +12,20 @@ import { Title } from "@/components/typography/Heading";
 import defaultTheme from "@/styles/global_mui";
 
 import { userLogin } from "@/utils/api/user";
+import { useSelector } from "react-redux";
 
 function MasukPage() {
 	const router = useRouter();
-	const [loadingState, setLoadingState] = useState(false);
 	const [result, setResult] = useState([]);
 
+	const authState = useSelector((state) => state.user.authenticated);
+
+	useEffect(() => {
+		if (authState) router.push("/admin/");
+	}, [authState]);
+
 	const handleUserLogin = () => {
-		userLogin(setLoadingState, result).then(() => {
-			router.push("/admin");
-		});
+		userLogin(result);
 	};
 	const handleInput = (e) => {
 		setResult({ ...result, [e.target.name]: e.target.value });

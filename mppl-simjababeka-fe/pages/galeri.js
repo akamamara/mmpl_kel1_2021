@@ -63,5 +63,6 @@ function GaleriPage() {
 GaleriPage.getLayout = (page) => {
 	return <NonLoginLayout>{page}</NonLoginLayout>;
 };
+GaleriPage.getTitle = "Galeri";
 
 export default GaleriPage;
