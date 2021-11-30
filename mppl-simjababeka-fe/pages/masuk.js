@@ -14,41 +14,41 @@ import defaultTheme from "@/styles/global_mui";
 import { userLogin } from "@/utils/api/user";
 
 function MasukPage() {
-	const router = useRouter();
-	const [loadingState, setLoadingState] = useState(false);
-	const [result, setResult] = useState([]);
+  const router = useRouter();
+  const [loadingState, setLoadingState] = useState(false);
+  const [result, setResult] = useState([]);
 
-	const handleUserLogin = () => {
-		userLogin(setLoadingState, result).then(() => {
-			router.push("/admin");
-		});
-	};
-	const handleInput = (e) => {
-		setResult({ ...result, [e.target.name]: e.target.value });
-	};
+  const handleUserLogin = () => {
+    userLogin(setLoadingState, result).then(() => {
+      router.push("/admin");
+    });
+  };
+  const handleInput = (e) => {
+    setResult({ ...result, [e.target.name]: e.target.value });
+  };
 
-	return (
-		<ThemeProvider theme={defaultTheme}>
-			<Box sx={{ width: "100%", marginTop: 15 }}>
-				<Card
-					evelation={3}
-					sx={{ marginLeft: "auto", marginRight: "auto", width: "50%" }}
-				>
-					<CardContent sx={{ padding: 6 }}>
-						<Title>Masuk</Title>
-						<FormLogin
-							handleSubmit={handleUserLogin}
-							handleInput={handleInput}
-						/>
-					</CardContent>
-				</Card>
-			</Box>
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Box sx={{ width: "100%", marginTop: 15 }}>
+        <Card
+          evelation={3}
+          sx={{ marginLeft: "auto", marginRight: "auto", width: "50%" }}
+        >
+          <CardContent sx={{ padding: 6 }}>
+            <Title>Masuk</Title>
+            <FormLogin
+              handleSubmit={handleUserLogin}
+              handleInput={handleInput}
+            />
+          </CardContent>
+        </Card>
+      </Box>
+    </ThemeProvider>
+  );
 }
 
 MasukPage.getLayout = (page) => {
-	return <NonLoginLayout>{page}</NonLoginLayout>;
+  return <NonLoginLayout>{page}</NonLoginLayout>;
 };
 
 export default MasukPage;
