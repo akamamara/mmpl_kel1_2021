@@ -63,6 +63,8 @@ const BeritaPage = () => {
   );
 };
 
+BeritaPage.getTitle = "Berita";
+
 BeritaPage.getLayout = (page) => {
   return <AdminLayout>{page}</AdminLayout>;
 };

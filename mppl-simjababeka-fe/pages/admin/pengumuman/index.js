@@ -63,6 +63,7 @@ const PengumumanPage = () => {
   );
 };
 
+PengumumanPage.getTitle = "Pengumuman";
 PengumumanPage.getLayout = (page) => {
   return <AdminLayout>{page}</AdminLayout>;
 };

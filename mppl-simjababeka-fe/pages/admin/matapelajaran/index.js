@@ -60,6 +60,7 @@ const MataPelajaranPage = () => {
   );
 };
 
+MataPelajaranPage.getTitle = "Mata Pelajaran";
 MataPelajaranPage.getLayout = (page) => {
   return <AdminLayout>{page}</AdminLayout>;
 };
