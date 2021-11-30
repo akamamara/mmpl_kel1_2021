@@ -5,8 +5,8 @@ export const getBerita = async (setData) => {
   return baseApi
     .get(`/berita`)
     .then((res) => {
-      console.log(res.map(({ id, ...rest }) => ({ ...rest })));
-      setData(res.map(({ id, ...rest }) => ({ ...rest })));
+      // console.log(res.map(({ id, ...rest }) => ({ ...rest })));
+      setData(res);
     })
     .catch((err) => {
       console.log(err);

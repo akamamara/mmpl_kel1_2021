@@ -36,7 +36,7 @@ export default function FormDialog({ dialogHandler, open, title, children }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={dialogHandler.handleClose}>Cancel</Button>
-          <Button onClick={dialogHandler.handleClose}>Simpan</Button>
+          <Button onClick={dialogHandler.handleSimpan}>Simpan</Button>
         </DialogActions>
       </Dialog>
     </div>

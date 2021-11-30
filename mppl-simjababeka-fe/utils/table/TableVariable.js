@@ -10,18 +10,21 @@ const VariableSiswa = [
 ];
 const VariableMataPelajaran = [
   "No", //
+  "ID",
   "Mata Pelajaran",
   "Jurusan",
   "Kelas",
 ];
 const VariablePengumuman = [
   "No", //
+  "ID",
   "Judul",
   // "Deskripsi",
   "Tanggal Terbit",
 ];
 const VariableBerita = [
   "No", //
+  "ID",
   "Judul",
   // "Deskripsi",
   "Tanggal Terbit",

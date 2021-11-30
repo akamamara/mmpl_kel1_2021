@@ -48,8 +48,8 @@ const TingkatList = [
 ];
 
 const JurusanList = [
-  "Teknik Kendaraan Ringan Otomotif", //
-  "Teknik Komputer dan Jaringan",
+  "Tek. Kendaraan Ringan Otomotif", //
+  "Tek. Komputer dan Jaringan",
 ];
 
 export default KelasList;
