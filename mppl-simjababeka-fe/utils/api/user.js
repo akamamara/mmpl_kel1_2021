@@ -3,6 +3,7 @@ import Cookie from "js-cookie";
 import baseApi from "@/utils/api/baseAPI";
 import { TOKEN_KEY_ACCESS, TOKEN_KEY_REFRESH } from "@/utils/api/baseAPI";
 
+<<<<<<< HEAD
 import { loadingSet } from "@/utils/redux/slice/loading";
 import {
 	alertSetError,
@@ -47,57 +48,74 @@ export const userLogin = async (data) => {
 		.finally(() => {
 			dispatch(loadingSet(false));
 		});
+=======
+export const userLogin = async (setLoadingState, data) => {
+  setLoadingState(true);
+  return baseApi
+    .post("/login/token/", data)
+    .then((res) => {
+      console.log(res);
+      Cookie.set(TOKEN_KEY_ACCESS, res.access);
+      Cookie.set(TOKEN_KEY_REFRESH, res.refresh);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      setLoadingState(false);
+    });
+>>>>>>> 27ae0e9ea6b1286eb53a867612b8b8fa4d8bd39e
 };
 
 export const refreshTokenLogin = async () => {
-	const token = Cookie.get(TOKEN_KEY_REFRESH);
-	return baseApi
-		.post("/login/token/refresh/", { refresh: token })
-		.then((res) => {
-			console.log(res);
-			Cookie.set(TOKEN_KEY_ACCESS, res.access);
-		});
+  const token = Cookie.get(TOKEN_KEY_REFRESH);
+  return baseApi
+    .post("/login/token/refresh/", { refresh: token })
+    .then((res) => {
+      console.log(res);
+      Cookie.set(TOKEN_KEY_ACCESS, res.access);
+    });
 };
 
 const registerUser = async (
-	setLoadingState,
-	setAlert,
-	setID,
-	userType,
-	data
+  setLoadingState,
+  setAlert,
+  setID,
+  userType,
+  data
 ) => {
-	setLoadingState(true);
-	return baseApi
-		.post("/register/", { ...data, user_type: userType })
-		.then((res) => {
-			console.log(res);
-			setID(res.user.id);
-			setAlert(res.message);
-		})
-		.catch((err) => console.log(err))
-		.finally(() => {
-			setLoadingState(false);
-		});
+  setLoadingState(true);
+  return baseApi
+    .post("/register/", { ...data, user_type: userType })
+    .then((res) => {
+      console.log(res);
+      setID(res.user.id);
+      setAlert(res.message);
+    })
+    .catch((err) => console.log(err))
+    .finally(() => {
+      setLoadingState(false);
+    });
 };
 
 export const registerGuru = async (
-	setLoadingState,
-	setAlert,
-	userType,
-	setID = 1,
-	data
+  setLoadingState,
+  setAlert,
+  userType,
+  setID = 1,
+  data
 ) => {
-	return registerUser(setLoadingState, setAlert, setID, userType, data);
+  return registerUser(setLoadingState, setAlert, setID, userType, data);
 };
 
 export const registerSiswa = async (
-	setLoadingState,
-	setAlert,
-	userType,
-	setID = 2,
-	data
+  setLoadingState,
+  setAlert,
+  userType,
+  setID = 2,
+  data
 ) => {
-	return registerUser(setLoadingState, setAlert, setID, userType, data);
+  return registerUser(setLoadingState, setAlert, setID, userType, data);
 };
 
 export const getProfileWithID = async (id, role) => {
