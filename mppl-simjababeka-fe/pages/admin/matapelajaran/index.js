@@ -49,18 +49,20 @@ const MataPelajaranPage = () => {
     },
 
     handleSimpan: () => {
-      console.log(idEdit);
-      const simpan = {
-        id: idEdit,
-        nama_mapel: result["Judul"],
-        jurusan: result["Jurusan"],
-        kelas: result["Kelas"],
-      };
-      updateMataPelajaranById(idEdit, simpan);
-      setOpen(!open);
-      let findIndex = data.map((x) => x.id).indexOf(idEdit);
-      console.log(findIndex);
-      data.splice(findIndex, 1, simpan);
+      if (result["Judul"] && result["Jurusan"] && result["Kelas"]) {
+        console.log(idEdit);
+        const simpan = {
+          id: idEdit,
+          nama_mapel: result["Judul"],
+          jurusan: result["Jurusan"],
+          kelas: result["Kelas"],
+        };
+        updateMataPelajaranById(idEdit, simpan);
+        setOpen(!open);
+        let findIndex = data.map((x) => x.id).indexOf(idEdit);
+        console.log(findIndex);
+        data.splice(findIndex, 1, simpan);
+      }
     },
   };
 

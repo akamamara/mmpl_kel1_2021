@@ -1,12 +1,16 @@
 const VariableGuru = [
   "No", //
+  "Email ID",
   "Nama",
-  "Mata Pelajaran",
-  "Wali Kelas",
+  "NIP",
 ];
 const VariableSiswa = [
   "No", //
+  "Email ID",
   "Nama",
+  "NISN",
+  "Jurusan",
+  "Kelas",
 ];
 const VariableMataPelajaran = [
   "No", //
