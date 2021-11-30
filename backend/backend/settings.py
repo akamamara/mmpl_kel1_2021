@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-g!!rys#s!vgsw8)y=+(2jf#5-5-$72s4=pe11f4o#ofh*pr*nh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', '*']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_yasg',
 
     # local
     'guru',

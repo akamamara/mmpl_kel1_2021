@@ -13,5 +13,5 @@ class BeritaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Berita
         fields = [
-            'id', 'judul_berita', 'slug_berita', 'isi_berita', 'gambar_berita', 'tanggal_berita',
+            'id', 'judul_berita', 'slub_berita', 'isi_berita', 'gambar_berita', 'tanggal_berita',
         ]
