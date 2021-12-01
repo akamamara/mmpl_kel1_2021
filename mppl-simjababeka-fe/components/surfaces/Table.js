@@ -55,7 +55,9 @@ export default function DenseTable({
                     variant="contained"
                     size="small"
                     color="success"
-                    onClick={handleEdit}
+                    onClick={() => {
+                      handleEdit(row);
+                    }}
                   >
                     <EditIcon />
                   </Buttons>
@@ -63,7 +65,7 @@ export default function DenseTable({
                     variant="contained"
                     size="small"
                     color="cancel"
-                    onClick={handleHapus}
+                    onClick={() => handleHapus(row)}
                   >
                     <DeleteIcon />
                   </Buttons>

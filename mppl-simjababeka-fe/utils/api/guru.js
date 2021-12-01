@@ -1,12 +1,12 @@
 import baseApi from "@/utils/api/baseAPI";
 
-export const getBerita = async (setData) => {
+export const getProfilGuru = async (setData) => {
   //   setLoading(true);
   return baseApi
-    .get(`/berita`)
+    .get(`/profil/guru/`)
     .then((res) => {
       // console.log(res.map(({ id, ...rest }) => ({ ...rest })));
-      setData(res);
+      setData(res.map(({ foto_guru, ...rest }) => ({ ...rest })));
     })
     .catch((err) => {
       console.log(err);
