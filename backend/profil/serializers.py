@@ -6,7 +6,7 @@ class ProfilListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profil
         fields = [
-            'nama_guru', 'nip', 'foto_guru',
+            'email_guru', 'nama_guru', 'nip', 'foto_guru',
         ]
 
 class ProfilSerializer(serializers.ModelSerializer):
@@ -21,7 +21,7 @@ class ProfilSiswaListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfilSiswa
         fields = [
-            'nama_siswa', 'nisn', 'jurusan', 'kelas', 'foto_siswa',
+            'email_siswa', 'nama_siswa', 'nisn', 'jurusan', 'kelas', 'foto_siswa',
         ]
 
 class ProfilSiswaSerializer(serializers.ModelSerializer):

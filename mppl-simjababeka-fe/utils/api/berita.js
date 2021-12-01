@@ -4,40 +4,33 @@ import { loadingSet } from "@/utils/redux/slice/loading";
 import { dispatch } from "@/utils/redux/store";
 export const getBerita = async (setData) => {
 	//   setLoading(true);
+	dispatch(loadingSet(true));
 	return baseApi
-		.get(`/berita/`)
+		.get(`/berita`)
 		.then((res) => {
 			// console.log(res.map(({ id, ...rest }) => ({ ...rest })));
 			setData(res);
 		})
 		.catch((err) => {
 			console.log(err);
-		});
-	// .finally(() => setLoading(false));
-};
-
-export const getBeritaID = async (id, setData) => {
-	//   setLoading(true);
-	return baseApi
-		.get(`/berita/${id}/`)
-		.then((res) => {
-			// console.log(res.map(({ id, ...rest }) => ({ ...rest })));
-			setData(res);
 		})
-		.catch((err) => {
-			console.log(err);
+		.finally(() => {
+			dispatch(loadingSet(false));
 		});
-	// .finally(() => setLoading(false));
 };
 
 export const postBerita = async (data, setData) => {
+	dispatch(loadingSet(true));
 	return baseApi
 		.post(`/berita/`, { ...data })
 		.then((res) => {
 			console.log(res);
 			setData(res);
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => console.log(err))
+		.finally(() => {
+			dispatch(loadingSet(false));
+		});
 };
 
 export const updateBeritaById = async (id, updatedData) => {
@@ -59,6 +52,7 @@ export const updateBeritaById = async (id, updatedData) => {
 
 export const deleteBeritaById = async (id) => {
 	//   setLoading(true);
+	dispatch(loadingSet(true));
 	return baseApi
 		.delete(`/berita/${id}/`)
 		.then((res) => {
@@ -67,6 +61,8 @@ export const deleteBeritaById = async (id) => {
 		})
 		.catch((err) => {
 			console.log(err);
+		})
+		.finally(() => {
+			dispatch(loadingSet(false));
 		});
-	// .finally(() => setLoading(false));
 };

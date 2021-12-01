@@ -5,6 +5,7 @@ import { dispatch } from "@/utils/redux/store";
 
 export const getMataPelajaran = async (setData) => {
 	//   setLoading(true);
+	dispatch(loadingSet(true));
 	return baseApi
 		.get(`/mapel`)
 		.then((res) => {
@@ -17,12 +18,15 @@ export const getMataPelajaran = async (setData) => {
 		})
 		.catch((err) => {
 			console.log(err);
+		})
+		.finally(() => {
+			dispatch(loadingSet(false));
 		});
-	// .finally(() => setLoading(false));
 };
 
 export const deleteMataPelajaranById = async (id) => {
 	//   setLoading(true);
+	dispatch(loadingSet(true));
 	return baseApi
 		.delete(`/mapel/${id}/`)
 		.then((res) => {
@@ -31,8 +35,10 @@ export const deleteMataPelajaranById = async (id) => {
 		})
 		.catch((err) => {
 			console.log(err);
+		})
+		.finally(() => {
+			dispatch(loadingSet(false));
 		});
-	// .finally(() => setLoading(false));
 };
 
 export const updateMataPelajaranById = async (id, updatedData) => {
@@ -53,10 +59,14 @@ export const updateMataPelajaranById = async (id, updatedData) => {
 };
 
 export const postMataPelajaran = async (data) => {
+	dispatch(loadingSet(true));
 	return baseApi
 		.post(`/mapel/`, { ...data })
 		.then((res) => {
 			console.log(res);
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => console.log(err))
+		.finally(() => {
+			dispatch(loadingSet(false));
+		});
 };

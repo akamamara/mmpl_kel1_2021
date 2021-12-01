@@ -5,7 +5,7 @@ class ListPengumumanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pengumuman
         fields = [
-            'judul_pengumuman', 'tanggal_pengumuman',
+            'id', 'judul_pengumuman', 'tanggal_pengumuman',
         ]
 
 class PengumumanSerializer(serializers.ModelSerializer):

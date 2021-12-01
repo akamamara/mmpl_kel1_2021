@@ -4,6 +4,7 @@ import { loadingSet } from "@/utils/redux/slice/loading";
 import { dispatch } from "@/utils/redux/store";
 
 export const getPengumuman = async (setData) => {
+	dispatch(loadingSet(true));
 	//   setLoading(true);
 	return baseApi
 		.get(`/pengumuman`)
@@ -13,32 +14,24 @@ export const getPengumuman = async (setData) => {
 		})
 		.catch((err) => {
 			console.log(err);
-		});
-	// .finally(() => setLoading(false));
-};
-
-export const getPengumumanID = async (id, setData) => {
-	//   setLoading(true);
-	return baseApi
-		.get(`/pengumuman/${id}/`)
-		.then((res) => {
-			// console.log(res.map(({ id, ...rest }) => ({ ...rest })));
-			setData(res);
 		})
-		.catch((err) => {
-			console.log(err);
+		.finally(() => {
+			dispatch(loadingSet(false));
 		});
-	// .finally(() => setLoading(false));
 };
 
 export const postPengumuman = async (data, setData) => {
+	dispatch(loadingSet(true));
 	return baseApi
 		.post(`/pengumuman/`, { ...data })
 		.then((res) => {
 			console.log(res);
 			setData(res);
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => console.log(err))
+		.finally(() => {
+			dispatch(loadingSet(false));
+		});
 };
 
 export const updatePengumumanById = async (id, updatedData) => {
@@ -59,6 +52,7 @@ export const updatePengumumanById = async (id, updatedData) => {
 };
 
 export const deletePengumumanById = async (id) => {
+	dispatch(loadingSet(true));
 	//   setLoading(true);
 	return baseApi
 		.delete(`/pengumuman/${id}/`)
@@ -68,6 +62,8 @@ export const deletePengumumanById = async (id) => {
 		})
 		.catch((err) => {
 			console.log(err);
+		})
+		.finally(() => {
+			dispatch(loadingSet(false));
 		});
-	// .finally(() => setLoading(false));
 };

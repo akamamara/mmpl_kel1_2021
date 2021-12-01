@@ -35,9 +35,9 @@ const VariableBerita = [
 ];
 const VariableGaleri = [
   "No", //
+  "ID Galeri",
   "Judul",
-  "Foto",
-  "Tanggal Terbit",
+  "Keterangan",
 ];
 export default VariableSiswa;
 export {
