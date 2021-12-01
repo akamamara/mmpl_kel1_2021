@@ -22,9 +22,13 @@ const PengumumanPage = () => {
   const [data, setData] = React.useState([]);
   const [filteredData, setFilteredData] = React.useState([]);
   const [isChange, setIsChange] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
     getPengumuman(setData);
+    return () => {
+      setData([]);
+    };
   }, []);
 
   const handleChange = (event) => {
@@ -40,6 +44,21 @@ const PengumumanPage = () => {
       setData(data);
       setIsChange(false);
     }
+  };
+
+  const handleEdit = (row) => {
+    setOpen(!open);
+    // const id = row[0];
+    // setIdEdit(id);
+  };
+
+  const handleHapus = (row) => {
+    console.log(row[0]);
+    // const id = row[0];
+    // deleteMataPelajaranById(id);
+    // const newData = data.filter((item) => item.id !== id);
+    // setData(newData);
+    // setFilteredData(newData);
   };
 
   return (
@@ -58,6 +77,8 @@ const PengumumanPage = () => {
         record={isChange ? filteredData : data}
         variable={VariablePengumuman}
         actionable={true}
+        handleEdit={handleEdit}
+        handleHapus={handleHapus}
       />
     </>
   );

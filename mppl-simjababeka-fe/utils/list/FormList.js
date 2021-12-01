@@ -28,5 +28,9 @@ const TambahGuru = [
   "Confirm Password",
 ];
 
+const JudulForm = [{ label: "Judul", name: "judul_pengumuman" }];
+
+const DeskripsiForm = [{ label: "Deskripsi", name: "isi_pengumuman" }];
+
 export default TambahSiswa;
-export { TambahGuru };
+export { TambahGuru, JudulForm, DeskripsiForm };
