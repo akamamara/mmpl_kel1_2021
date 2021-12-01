@@ -59,45 +59,26 @@ export const refreshTokenLogin = async () => {
 		});
 };
 
-const registerUser = async (
-	setLoadingState,
-	setAlert,
-	setID,
-	userType,
-	data
-) => {
-	setLoadingState(true);
+const registerUser = async (setID, userType, data) => {
+	dispatch(loadingSet(true));
 	return baseApi
 		.post("/register/", { ...data, user_type: userType })
 		.then((res) => {
 			console.log(res);
 			setID(res.user.id);
-			setAlert(res.message);
 		})
 		.catch((err) => console.log(err))
 		.finally(() => {
-			setLoadingState(false);
+			dispatch(loadingSet(false));
 		});
 };
 
-export const registerGuru = async (
-	setLoadingState,
-	setAlert,
-	userType,
-	setID = 1,
-	data
-) => {
-	return registerUser(setLoadingState, setAlert, setID, userType, data);
+export const registerGuru = async (userType = 1, setID, data) => {
+	return registerUser(setID, userType, data);
 };
 
-export const registerSiswa = async (
-	setLoadingState,
-	setAlert,
-	userType,
-	setID = 2,
-	data
-) => {
-	return registerUser(setLoadingState, setAlert, setID, userType, data);
+export const registerSiswa = async (userType = 2, setID, data) => {
+	return registerUser(setID, userType, data);
 };
 
 export const getProfileWithID = async (id, role) => {
@@ -112,5 +93,16 @@ export const getProfileWithID = async (id, role) => {
 		.catch((err) => {
 			console.log(err);
 		})
+		.finally(() => dispatch(loadingSet(false)));
+};
+
+export const putProfileID = async (id, role, data) => {
+	dispatch(loadingSet(true));
+	return baseApi
+		.put(`/profil/${role}/${id}/`, data)
+		.then((res) => {
+			console.log(res);
+		})
+		.catch((err) => console.log(err))
 		.finally(() => dispatch(loadingSet(false)));
 };
