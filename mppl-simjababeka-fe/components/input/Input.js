@@ -44,10 +44,10 @@ function InputText({ ...rest }) {
 	);
 }
 
-function BasicSelect({ value, action, label, data }) {
+function BasicSelect({ value, name, action, label, data }) {
 	return (
 		<ThemeProvider theme={defaultTheme}>
-			<Box sx={{ minWidth: 120, width: "50%", mb: 1 }}>
+			<Box sx={{ minWidth: 120, width: "100%", mb: 1 }}>
 				<FormControl fullWidth>
 					<InputLabel id="demo-simple-select-autowidth-label">
 						<Subtitle2>{label}</Subtitle2>
@@ -57,6 +57,7 @@ function BasicSelect({ value, action, label, data }) {
 						id="demo-simple-select"
 						value={value}
 						label={label}
+						name={name}
 						onChange={action}
 					>
 						{data.map((item, index) => (

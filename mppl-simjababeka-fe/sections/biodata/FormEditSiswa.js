@@ -4,6 +4,7 @@ import FormDialog from "@/components/surfaces/Dialog";
 import { Subtitle2 } from "@/components/typography/Heading";
 import { InputText, BasicSelect } from "@/components/input/Input";
 import DataPribadiLabel from "@/utils/list/BiodataList";
+import { ProfilSiswaLabel } from "@/utils/list/BiodataList";
 
 function FormEditSiswa({ dialogHandler, open, title }) {
 	return (

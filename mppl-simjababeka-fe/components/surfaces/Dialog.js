@@ -48,7 +48,7 @@ export default function FormDialog({
 					<Button
 						onClick={() => {
 							dialogHandler.handleSubmit(onSubmitData);
-							dialogHandler.handleClose();
+							// dialogHandler.handleClose();
 						}}
 					>
 						Simpan

@@ -84,7 +84,7 @@ export const registerSiswa = async (userType = 2, setID, data) => {
 export const getProfileWithID = async (id, role) => {
 	dispatch(loadingSet(true));
 	return baseApi
-		.get(`/profil/${role}/${id}`)
+		.get(`/profil/${role}/${id}/`)
 		.then((res) => {
 			console.log(res);
 			if (role === "guru") dispatch(setCurrentUserGuru(res));
@@ -98,8 +98,17 @@ export const getProfileWithID = async (id, role) => {
 
 export const putProfileID = async (id, role, data) => {
 	dispatch(loadingSet(true));
+	let formData = new FormData();
+	Object.keys(data).map((item) => {
+		if (!!data[item]) formData.append(item, data[item]);
+	});
+
+	for (var pair of formData.entries()) {
+		console.log(pair[0] + ", " + pair[1]);
+	}
+
 	return baseApi
-		.put(`/profil/${role}/${id}/`, data)
+		.patch(`/profil/${role}/${id}/`, formData)
 		.then((res) => {
 			console.log(res);
 		})

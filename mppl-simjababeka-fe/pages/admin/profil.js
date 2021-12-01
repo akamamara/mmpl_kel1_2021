@@ -22,6 +22,8 @@ const ProfilPage = () => {
 	const [jenisKelamin, setJenisKelamin] = React.useState("");
 	const [jurusan, setJurusan] = React.useState("");
 	const [tingkat, setTingkat] = React.useState("");
+	const [selectedImage, setSelectedImage] = React.useState(null);
+	const [previewImage, setPreviewImage] = React.useState(null);
 
 	const idUser = useSelector((state) => state.user.role.id);
 	const role = EnumRole(useSelector((state) => state.user.role.user_type));
@@ -87,11 +89,25 @@ const ProfilPage = () => {
 
 		handleInput: (e) => {
 			setResult({ ...result, [e.target.name]: e.target.value });
+			if (!!e.target.files) {
+				setSelectedImage(e.target.files[0]);
+				setPreviewImage(URL.createObjectURL(e.target.files[0]));
+			}
 		},
 
 		handleSubmit: (data) => {
-			console.log("Result", result);
-			putProfileID(data.id, data.role, { ...data.data, ...result }).then(() => {
+			const result_data = {
+				...data.data,
+				...result,
+				foto_guru: selectedImage ? selectedImage : data.data.foto_guru,
+				foto_siswa: selectedImage ? selectedImage : data.data.foto_siswa,
+			};
+			if (role === "siswa") delete result_data.foto_guru;
+			if (role === "guru") delete result_data.foto_siswa;
+
+			console.log("Result", result_data);
+
+			putProfileID(data.id, data.role, result_data).then(() => {
 				getProfileWithID(data.id, data.role);
 			});
 		},
@@ -105,6 +121,7 @@ const ProfilPage = () => {
 					open={open}
 					result={result}
 					setResult={setResult}
+					imagePreview={previewImage}
 				/>
 			</Container>
 		</>

@@ -7,7 +7,7 @@ import { Typography } from "@mui/material";
 
 import { Subtitle2 } from "@/components/typography/Heading";
 import CapitalizeEachWord from "@/utils/helper/CapitalizeEachWord";
-import { ProfilGuruLabel } from "@/utils/list/BiodataList";
+import { ProfilGuruLabel, ProfilSiswaLabel } from "@/utils/list/BiodataList";
 
 import { Body1 } from "@/components/typography/Body";
 
@@ -18,7 +18,7 @@ const Item = styled(Typography)(({ theme }) => ({
 	color: theme.palette.text.primary,
 }));
 
-export default function BiodataPribadi({ showData }) {
+export default function BiodataPribadi({ role, showData }) {
 	return (
 		<div>
 			<Box sx={{ flexGrow: 1 }}>
@@ -26,8 +26,9 @@ export default function BiodataPribadi({ showData }) {
 					container
 					spacing={{ xs: 2, md: 3 }}
 					columns={{ xs: 4, sm: 8, md: 12 }}
+					alignItems="flex-end"
 				>
-					{ProfilGuruLabel.map((it) => (
+					{(role === "guru" ? ProfilGuruLabel : ProfilSiswaLabel).map((it) => (
 						<Grid item xs={4} sm={8} md={6} key={it}>
 							<Item>
 								<Subtitle2>
@@ -35,11 +36,26 @@ export default function BiodataPribadi({ showData }) {
 								</Subtitle2>
 							</Item>
 							<Item>
-								<Body1 sx={{ opacity: 0.7 }}>
-									{showData[it.name] === null
-										? "Data belum diisi"
-										: showData[it.name]}
-								</Body1>
+								{it.label !== "Foto" ? (
+									<Body1 sx={{ opacity: 0.7 }}>
+										{showData[it.name] === null
+											? "Data belum diisi"
+											: showData[it.name]}
+									</Body1>
+								) : !!showData[it.name] ? (
+									<img
+										src={showData[it.name]}
+										style={{
+											width: 160,
+											height: 160,
+											objectFit: "cover",
+											borderRadius: 999,
+										}}
+										alt={it.label}
+									/>
+								) : (
+									"Data belum diisi"
+								)}
 							</Item>
 						</Grid>
 					))}

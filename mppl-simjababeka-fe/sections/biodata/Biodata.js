@@ -15,8 +15,7 @@ import DataPribadiLabel, {
 	DataOrangTua,
 } from "@/utils/list/BiodataList";
 
-import FormEditSiswa from "@/sections/biodata/FormEditSiswa";
-import FormEditGuru from "@/sections/biodata/FormEditGuru";
+import FormEditProfil from "@/sections/biodata/FormEditProfil";
 
 import { useSelector } from "react-redux";
 import EnumRole from "@/utils/helper/EnumRole";
@@ -62,10 +61,14 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 	})
 );
 
-export default function Biodata({ dialogHandler, open, result, setResult }) {
+export default function Biodata({
+	dialogHandler,
+	open,
+	result,
+	imagePreview,
+	setResult,
+}) {
 	const [value, setValue] = React.useState(0);
-	const [showDataPribadi, setShowDataPribadi] = React.useState([]);
-	const [showDataOrangTua, setShowDataOrangTua] = React.useState([]);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -76,11 +79,6 @@ export default function Biodata({ dialogHandler, open, result, setResult }) {
 		console.log(temp);
 		return temp;
 	};
-
-	React.useEffect(() => {
-		setShowDataPribadi(toArrayData(DataPribadi[0]));
-		setShowDataOrangTua(toArrayData(DataOrangTua[0]));
-	}, []);
 
 	const role = EnumRole(useSelector((state) => state.user.role.user_type));
 	const dataProfil = useSelector((state) =>
@@ -117,17 +115,19 @@ export default function Biodata({ dialogHandler, open, result, setResult }) {
 					<Subtitle1>Ubah Profil</Subtitle1>
 				</Button>
 
-				<FormEditGuru
+				<FormEditProfil
+					role={role}
 					dialogHandler={dialogHandler}
 					open={open}
 					title="Ubah Profil"
 					data={dataProfil}
 					result={result}
+					imagePreview={imagePreview}
 				/>
 			</Box>
 
 			<TabPanel value={value} index={0}>
-				<BiodataPribadi showData={dataProfil} />
+				<BiodataPribadi role={role} showData={dataProfil} />
 			</TabPanel>
 			{/* <TabPanel value={value} index={1}>
 				<BiodataOrangTua showData={showDataOrangTua} />
