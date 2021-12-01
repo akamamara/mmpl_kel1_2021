@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useRouter } from "next/router";
+
 import { styled, useTheme } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
@@ -29,6 +31,12 @@ import Logout from "@mui/icons-material/Logout";
 
 import { Subtitle2, Subtitle1 } from "@/components/typography/Heading";
 import defaultTheme from "@/styles/global_mui";
+
+import { refreshTokenLogin } from "@/utils/api/user";
+
+import { dispatch } from "@/utils/redux/store";
+import { setLogout } from "@/utils/redux/slice/user";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -109,11 +117,20 @@ const useStyles = makeStyles(
 );
 
 export default function AdminLayout({ children }) {
+	const router = useRouter();
 	const theme = useTheme();
 	const classes = useStyles();
+
 	const [open, setOpen] = React.useState(true);
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const openMenu = Boolean(anchorEl);
+
+	const authState = useSelector((state) => state.user.authenticated);
+
+	React.useEffect(() => {
+		if (!authState) router.replace("/");
+	}, [authState]);
+	React.useEffect(() => refreshTokenLogin(), []);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -212,7 +229,7 @@ export default function AdminLayout({ children }) {
 					</ListItemIcon>
 					<Subtitle2>Ubah Foto</Subtitle2>
 				</MenuItem>
-				<MenuItem>
+				<MenuItem onClick={() => dispatch(setLogout())}>
 					<ListItemIcon>
 						<Logout fontSize="small" />
 					</ListItemIcon>

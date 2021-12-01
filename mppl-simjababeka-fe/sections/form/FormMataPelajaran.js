@@ -17,7 +17,7 @@ const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
 const FormMataPelajaran = ({
   handleKelas,
   handleJurusan,
-  handleInput,
+  handleNamaMapel,
   handleSimpan,
 }) => {
   return (
@@ -44,9 +44,10 @@ const FormMataPelajaran = ({
       >
         <InputText
           name="Judul"
-          label="Judul"
+          label="Nama Mata Pelajaran"
           sx={{ mb: 1, width: "100%" }}
-          onChange={handleInput}
+          onChange={(e) => handleNamaMapel.handleInput(e)}
+          value={handleNamaMapel.checkValue()}
         />
         <BasicSelect
           action={(e) => handleKelas.handleChange(e)}

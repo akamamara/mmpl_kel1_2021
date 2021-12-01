@@ -7,38 +7,60 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function FormDialog({ dialogHandler, open, title, children }) {
-  //   const [open, setOpen] = React.useState(false);
+import { useSelector } from "react-redux";
+import EnumRole from "@/utils/helper/EnumRole";
 
-  //   const handleClickOpen = () => {
-  //     setOpen(true);
-  //   };
+export default function FormDialog({
+	dialogHandler,
+	open,
+	title,
+	onSubmitData,
+	children,
+}) {
+	//   const [open, setOpen] = React.useState(false);
 
-  //   const handleClose = () => {
-  //     setOpen(false);
-  //   };
+	//   const handleClickOpen = () => {
+	//     setOpen(true);
+	//   };
 
-  return (
-    <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
+	//   const handleClose = () => {
+	//     setOpen(false);
+	//   };
+
+	return (
+		<div>
+			{/* <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button> */}
-      <Dialog
-        open={open}
-        onClose={dialogHandler.handleClose}
-        fullWidth
-        maxWidth="md"
-      >
-        <DialogTitle>{title}</DialogTitle>
-        <DialogContent>
-          {/* <DialogContentText>{title}</DialogContentText> */}
-          {children}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={dialogHandler.handleClose}>Cancel</Button>
-          <Button onClick={dialogHandler.handleClose}>Simpan</Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+			<Dialog
+				open={open}
+				onClose={dialogHandler.handleClose}
+				fullWidth
+				maxWidth="md"
+			>
+				<DialogTitle>{title}</DialogTitle>
+				<DialogContent>
+					{/* <DialogContentText>{title}</DialogContentText> */}
+					{children}
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={dialogHandler.handleClose}>Cancel</Button>
+					<Button
+						onClick={
+							onSubmitData
+								? () => {
+										dialogHandler.handleSubmit(onSubmitData);
+										// dialogHandler.handleClose();
+								  }
+								: () => {
+										dialogHandler.handleSimpan();
+								  }
+						}
+					>
+						Simpan
+					</Button>
+				</DialogActions>
+			</Dialog>
+		</div>
+	);
 }

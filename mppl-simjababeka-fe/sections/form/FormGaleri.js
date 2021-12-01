@@ -20,67 +20,52 @@ const Input = styled("input")({
   display: "none",
 });
 
-const FormGaleri = ({
-  onChange,
-  renderImages,
-  handleJudul,
-  handleKeterangan,
-  simpanHandler,
-}) => {
+const FormGaleri = ({ onChange, renderImages, handleInput, list }) => {
   return (
     <>
-      <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-        <Button
-          variant="contained"
-          size="small"
-          color="success"
-          onClick={simpanHandler}
-        >
-          <Subtitle2>Simpan</Subtitle2>
-        </Button>
-        <Link href="/admin/galeri">
-          <ButtonNext color="cancel">
-            <Subtitle2>Batal</Subtitle2>
-          </ButtonNext>
-        </Link>
-      </Stack>
       <Box
         sx={{
           width: "100%",
         }}
       >
-        <InputText
-          label="Judul"
-          sx={{ mb: 1, width: "100%" }}
-          onChange={handleJudul}
-        />
-        <InputText
-          label="Keterangan"
-          sx={{ mb: 1, width: "100%" }}
-          onChange={handleKeterangan}
-        />
-        <label htmlFor="contained-button-file">
-          <Input
-            accept="image/*"
-            id="contained-button-file"
-            multiple
-            type="file"
-            onChange={onChange}
-          />
-          <Button
-            variant="contained"
-            size="small"
-            component="span"
-            color="success"
-          >
-            <PhotoCamera />
-            {/* <Typography sx={{ ml: 1 }}>Upload Foto</Typography> */}
-            <Subtitle1 sx={{ ml: 1 }}>Upload Foto</Subtitle1>
-          </Button>
-        </label>
-        <Stack direction="row" sx={{ mt: 1 }}>
-          {renderImages}
-        </Stack>
+        {list.map((item, index) => (
+          <Box key={index} py={1} mb={1}>
+            {item.type === "file" ? (
+              <>
+                <label htmlFor="contained-button-file">
+                  <Input
+                    accept="image/*"
+                    id="contained-button-file"
+                    multiple={item.multiple}
+                    type="file"
+                    onChange={onChange}
+                  />
+                  <Button
+                    variant="contained"
+                    size="small"
+                    component="span"
+                    color="success"
+                  >
+                    <PhotoCamera />
+                    {/* <Typography sx={{ ml: 1 }}>Upload Foto</Typography> */}
+                    <Subtitle1 sx={{ ml: 1 }}>Upload Foto</Subtitle1>
+                  </Button>
+                </label>
+                <Stack direction="row" sx={{ mt: 1 }}>
+                  {renderImages}
+                </Stack>
+              </>
+            ) : (
+              <InputText
+                fullWidth
+                label={item.label}
+                name={item.name}
+                type={item.type}
+                onChange={handleInput}
+              />
+            )}
+          </Box>
+        ))}
       </Box>
     </>
   );

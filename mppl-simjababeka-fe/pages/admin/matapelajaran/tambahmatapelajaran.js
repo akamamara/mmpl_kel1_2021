@@ -3,10 +3,13 @@ import FormMataPelajaran from "@/sections/form/FormMataPelajaran";
 import * as React from "react";
 import { TingkatList, JurusanList } from "@/utils/list/SelectList";
 
+import { postMataPelajaran } from "@/utils/api/mapel";
+
 const TambahMataPelajaran = () => {
   const [result, setResult] = React.useState([]);
   const [kelas, setKelas] = React.useState("");
   const [jurusan, setJurusan] = React.useState("");
+  const [namaMapel, setNamaMapel] = React.useState("");
 
   const handleKelas = {
     handleChange: (event) => {
@@ -34,12 +37,31 @@ const TambahMataPelajaran = () => {
     },
   };
 
-  const handleInput = (event) => {
-    setResult({ ...result, [event.target.name]: event.target.value });
+  const handleNamaMapel = {
+    handleInput: (event) => {
+      setNamaMapel(event.target.value);
+      setResult({ ...result, [event.target.name]: event.target.value });
+    },
+    checkValue: () => {
+      return namaMapel;
+    },
   };
 
   const handleSimpan = () => {
-    console.log(result);
+    console.log(
+      JSON.parse(JSON.parse(localStorage.getItem("persist:jababeka:root")).user)
+        .role.user_type
+    );
+    const simpan = {
+      nama_mapel: result["Judul"],
+      kelas: result["Kelas"],
+      jurusan: result["Jurusan"],
+    };
+    postMataPelajaran(simpan);
+    setResult([]);
+    setNamaMapel("");
+    setJurusan("");
+    setKelas("");
   };
 
   return (
@@ -47,7 +69,7 @@ const TambahMataPelajaran = () => {
       <FormMataPelajaran
         handleKelas={handleKelas}
         handleJurusan={handleJurusan}
-        handleInput={handleInput}
+        handleNamaMapel={handleNamaMapel}
         handleSimpan={handleSimpan}
       />
     </>

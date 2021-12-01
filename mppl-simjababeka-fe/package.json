@@ -1,31 +1,39 @@
 {
-  "name": "mppl-simjababeka-fe",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0",
-    "@material-ui/icons": "^4.11.2",
-    "@mui/icons-material": "^5.1.1",
-    "@mui/material": "^5.1.0",
-    "@mui/styled-engine-sc": "^5.0.4",
-    "@mui/styles": "^5.0.2",
-    "form-data": "^4.0.0",
-    "next": "12.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-material-ui-carousel": "^3.0.4",
-    "styled-components": "^5.3.3"
-  },
-  "devDependencies": {
-    "babel-plugin-styled-components": "^1.13.3",
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.1"
-  }
+	"name": "mppl-simjababeka-fe",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"proxy": "lcp --proxyUrl http://jabadeka.herokuapp.com"
+	},
+	"dependencies": {
+		"@emotion/react": "^11.5.0",
+		"@emotion/styled": "^11.3.0",
+		"@material-ui/icons": "^4.11.2",
+		"@mui/icons-material": "^5.1.1",
+		"@mui/material": "^5.1.0",
+		"@mui/styled-engine-sc": "^5.0.4",
+		"@mui/styles": "^5.0.2",
+		"@reduxjs/toolkit": "^1.6.2",
+		"axios": "^0.24.0",
+		"form-data": "^4.0.0",
+		"js-cookie": "^3.0.1",
+		"local-cors-proxy": "^1.1.0",
+		"next": "12.0.1",
+		"react": "17.0.2",
+		"react-dom": "17.0.2",
+		"react-material-ui-carousel": "^3.0.4",
+		"react-redux": "^7.2.6",
+		"redux-logger": "^3.0.6",
+		"redux-persist": "^6.0.0",
+		"styled-components": "^5.3.3"
+	},
+	"devDependencies": {
+		"babel-plugin-styled-components": "^1.13.3",
+		"eslint": "7.32.0",
+		"eslint-config-next": "12.0.1"
+	}
 }

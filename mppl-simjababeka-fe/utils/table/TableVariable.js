@@ -1,35 +1,43 @@
 const VariableGuru = [
   "No", //
+  "Email ID",
   "Nama",
-  "Mata Pelajaran",
-  "Wali Kelas",
+  "NIP",
 ];
 const VariableSiswa = [
   "No", //
+  "Email ID",
   "Nama",
+  "NISN",
+  "Jurusan",
+  "Kelas",
 ];
 const VariableMataPelajaran = [
   "No", //
+  "ID",
   "Mata Pelajaran",
+  "Jurusan",
   "Kelas",
 ];
 const VariablePengumuman = [
   "No", //
+  "ID",
   "Judul",
-  "Deskripsi",
+  // "Deskripsi",
   "Tanggal Terbit",
 ];
 const VariableBerita = [
   "No", //
+  "ID",
   "Judul",
-  "Deskripsi",
+  // "Deskripsi",
   "Tanggal Terbit",
 ];
 const VariableGaleri = [
   "No", //
+  "ID Galeri",
   "Judul",
-  "Foto",
-  "Tanggal Terbit",
+  "Keterangan",
 ];
 export default VariableSiswa;
 export {
