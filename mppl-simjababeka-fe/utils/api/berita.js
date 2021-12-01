@@ -19,6 +19,23 @@ export const getBerita = async (setData) => {
     });
 };
 
+export const getBeritaPartial = async (setData) => {
+  //   setLoading(true);
+  dispatch(loadingSet(true));
+  return baseApi
+    .get(`/berita`)
+    .then((res) => {
+      // console.log(res.map(({ id, ...rest }) => ({ ...rest })));
+      setData(res.map(({ gambar_berita, ...rest }) => ({ ...rest })));
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      dispatch(loadingSet(false));
+    });
+};
+
 export const postBerita = async (data, setData) => {
   dispatch(loadingSet(true));
   return baseApi

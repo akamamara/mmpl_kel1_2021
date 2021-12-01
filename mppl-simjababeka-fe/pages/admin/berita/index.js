@@ -10,7 +10,7 @@ import { Subtitle2 } from "@/components/typography/Heading";
 
 import FormDialog from "@/components/surfaces/Dialog";
 import {
-  getBerita,
+  getBeritaPartial,
   deleteBeritaById,
   updateBeritaById,
 } from "@/utils/api/berita";
@@ -37,7 +37,7 @@ const BeritaPage = () => {
   const [defaultValue, setDefaultValue] = React.useState([]);
 
   React.useEffect(() => {
-    getBerita(setData);
+    getBeritaPartial(setData);
     return () => {
       setData([]);
     };
