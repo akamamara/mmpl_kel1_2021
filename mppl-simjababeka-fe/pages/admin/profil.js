@@ -97,13 +97,16 @@ const ProfilPage = () => {
 
 		handleSubmit: (data) => {
 			const result_data = {
-				...data.data,
 				...result,
-				foto_guru: selectedImage ? selectedImage : data.data.foto_guru,
-				foto_siswa: selectedImage ? selectedImage : data.data.foto_siswa,
+				mapel_id: result.mapel_id.id,
+				foto_guru: selectedImage,
+				foto_siswa: selectedImage,
 			};
-			if (role === "siswa") delete result_data.foto_guru;
-			if (role === "guru") delete result_data.foto_siswa;
+			if (role === "siswa") delete result_data.mapel_id;
+			if (role === "siswa" || !!!selectedImage) {
+				delete result_data.foto_guru;
+			}
+			if (role === "guru" || !!!selectedImage) delete result_data.foto_siswa;
 
 			console.log("Result", result_data);
 

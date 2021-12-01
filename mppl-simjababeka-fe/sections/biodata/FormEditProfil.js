@@ -6,10 +6,8 @@ import { InputText } from "@/components/input/Input";
 
 import { useSelector } from "react-redux";
 import { ProfilGuruLabel, ProfilSiswaLabel } from "@/utils/list/BiodataList";
-import EnumRole from "@/utils/helper/EnumRole";
 
 import { BasicSelect } from "@/components/input/Input";
-import KelasList from "@/utils/list/SelectList";
 
 const PreviewImage = ({ image }) => (
 	<img

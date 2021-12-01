@@ -4,6 +4,8 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 import store from "@/utils/redux/store";
 
+import LoadingSection from "@/sections/LoadingSection";
+
 const Noop = ({ children }) => children;
 
 function MyApp({ Component, pageProps }) {

@@ -28,7 +28,7 @@ export default function FormDialog({
 	//   };
 
 	return (
-		<div>
+		<div style={{ zIndex: 900 }}>
 			{/* <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button> */}
@@ -37,6 +37,7 @@ export default function FormDialog({
 				onClose={dialogHandler.handleClose}
 				fullWidth
 				maxWidth="md"
+				sx={{ zIndex: 920 }}
 			>
 				<DialogTitle>{title}</DialogTitle>
 				<DialogContent>

@@ -14,6 +14,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 import { Subtitle2 } from "@/components/typography/Heading";
 import defaultTheme from "@/styles/global_mui";
+import checkObjectIsEmpty from "@/utils/helper/checkObjectIsEmpty";
 
 const style = {
 	text: {
@@ -62,7 +63,13 @@ function BasicSelect({ value, name, action, label, data }) {
 					>
 						{data.map((item, index) => (
 							<MenuItem key={index} value={item}>
-								<Subtitle2>{item}</Subtitle2>
+								<Subtitle2>
+									{typeof item === "object"
+										? Object.keys(item)
+												.map((key, index) => item[key])
+												.join(" - ")
+										: item}
+								</Subtitle2>
 							</MenuItem>
 						))}
 					</Select>

@@ -4,8 +4,9 @@ import { Card, CardImages, CardContent } from "@/components/surfaces/Card";
 import { Heading2 } from "@/components/typography/Heading";
 import Buttons from "@/components/input/Button";
 import defaultTheme from "@/styles/global_mui";
+import Body1 from "@/components/typography/Body";
 
-function Pengumuman_Berita() {
+function Pengumuman_Berita({ dataBerita, dataPengumuman }) {
 	return (
 		<ThemeProvider theme={defaultTheme}>
 			<Grid container spacing={8}>
@@ -19,7 +20,7 @@ function Pengumuman_Berita() {
 						}}
 					>
 						<Grid item>
-							<Heading2>Pengumuman Akademik</Heading2>
+							<Heading2>Pengumuman</Heading2>
 						</Grid>
 						<Grid item>
 							<Buttons
@@ -35,11 +36,19 @@ function Pengumuman_Berita() {
 						columnSpacing={defaultTheme.spacing(3.5)}
 						rowSpacing={defaultTheme.spacing(2.5)}
 					>
-						{Array.from({ length: 6 }, (item) => (
-							<Grid item xs={6}>
+						{dataPengumuman.map((item) => (
+							<Grid item xs={6} key={item.id}>
 								<Card>
-									<CardImages src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg" />
-									<CardContent>Hello world!</CardContent>
+									<CardContent>
+										<Body1 sx={{ marginBottom: 1 }}>
+											<b>{item.judul_pengumuman}</b>
+										</Body1>
+										<Body1>
+											{item.isi_pengumuman.split(" ").splice(0, 20).join(" ")}
+											{}
+											{item.isi_pengumuman.split(" ").length > 20 ? "..." : ""}
+										</Body1>
+									</CardContent>
 								</Card>
 							</Grid>
 						))}
@@ -71,11 +80,16 @@ function Pengumuman_Berita() {
 						columnSpacing={defaultTheme.spacing(3.5)}
 						rowSpacing={defaultTheme.spacing(2.5)}
 					>
-						{Array.from({ length: 6 }, (item) => (
-							<Grid item xs={6}>
+						{dataBerita.map((item) => (
+							<Grid item xs={6} key={item.id}>
 								<Card>
-									<CardImages src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg" />
-									<CardContent>Hello world!</CardContent>
+									<CardImages src={item.gambar_berita} />
+									<CardContent>
+										<Body1 sx={{ marginBottom: 1 }}>
+											<b>{item.judul_berita}</b>
+										</Body1>
+										<Body1>{item.isi_berita}</Body1>
+									</CardContent>
 								</Card>
 							</Grid>
 						))}

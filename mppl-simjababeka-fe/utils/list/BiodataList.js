@@ -1,4 +1,21 @@
+import { useState } from "react";
 import { TingkatList, JurusanList } from "./SelectList";
+import { getMataPelajaran } from "../api/mapel";
+
+function ListMataPelajaran() {
+	let data = [];
+
+	function setData(newData) {
+		newData.map((item) => {
+			data.push(item);
+		});
+		return data;
+	}
+
+	getMataPelajaran(setData);
+	console.log(data);
+	return data;
+}
 
 // Real data
 export const ProfilGuruLabel = [
@@ -9,7 +26,12 @@ export const ProfilGuruLabel = [
 	{ label: "Pendidikan", name: "pendidikan" },
 	{ label: "Tanggal Lahir", name: "tanggal_lahir", type: "date" },
 	{ label: "Tempat Lahir", name: "tempat_lahir" },
-	{ label: "Mata Pelajaran", name: "mapel_id" },
+	{
+		label: "Mata Pelajaran",
+		name: "mapel_id",
+		type: "selection",
+		data: ListMataPelajaran(),
+	},
 	{ label: "No. Telepon", name: "no_telp", type: "tel" },
 ];
 

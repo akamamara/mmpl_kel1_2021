@@ -10,6 +10,8 @@ import CapitalizeEachWord from "@/utils/helper/CapitalizeEachWord";
 import { ProfilGuruLabel, ProfilSiswaLabel } from "@/utils/list/BiodataList";
 
 import { Body1 } from "@/components/typography/Body";
+import MatpelList from "@/utils/list/MatpelList";
+import { getMataPelajaran } from "@/utils/api/mapel";
 
 const Item = styled(Typography)(({ theme }) => ({
 	...theme.typography.body2,
@@ -19,6 +21,12 @@ const Item = styled(Typography)(({ theme }) => ({
 }));
 
 export default function BiodataPribadi({ role, showData }) {
+	const [dataMatpel, setDataMatpel] = React.useState([]);
+
+	React.useEffect(() => {
+		getMataPelajaran(setDataMatpel);
+	}, [showData]);
+
 	return (
 		<div>
 			<Box sx={{ flexGrow: 1 }}>
@@ -40,6 +48,10 @@ export default function BiodataPribadi({ role, showData }) {
 									<Body1 sx={{ opacity: 0.7 }}>
 										{showData[it.name] === null
 											? "Data belum diisi"
+											: it.label === "Mata Pelajaran"
+											? dataMatpel.filter(
+													(item) => item.id === showData["mapel_id"]
+											  )[0]?.nama_mapel
 											: showData[it.name]}
 									</Body1>
 								) : !!showData[it.name] ? (

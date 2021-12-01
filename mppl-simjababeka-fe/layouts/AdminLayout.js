@@ -30,13 +30,14 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import Logout from "@mui/icons-material/Logout";
 
 import { Subtitle2, Subtitle1 } from "@/components/typography/Heading";
+import LoadingSection from "@/sections/LoadingSection";
 import defaultTheme from "@/styles/global_mui";
 
+import { useSelector } from "react-redux";
 import { refreshTokenLogin } from "@/utils/api/user";
-
 import { dispatch } from "@/utils/redux/store";
 import { setLogout } from "@/utils/redux/slice/user";
-import { useSelector } from "react-redux";
+import EnumRole from "@/utils/helper/EnumRole";
 
 const drawerWidth = 240;
 
@@ -126,6 +127,23 @@ export default function AdminLayout({ children }) {
 	const openMenu = Boolean(anchorEl);
 
 	const authState = useSelector((state) => state.user.authenticated);
+	const role = EnumRole(useSelector((state) => state.user.role.user_type));
+	const loadingState = useSelector((state) => state.loading);
+
+	const currentUser = {
+		name: useSelector((state) =>
+			role === "guru"
+				? state.user.currentUserGuru.nama_guru
+				: state.user.currentUserSiswa.nama_siswa
+		),
+		picture: useSelector((state) =>
+			role === "guru"
+				? state.user.currentUserGuru.foto_guru
+				: state.user.currentUserSiswa.foto_siswa
+		),
+	};
+
+	console.log(currentUser);
 
 	React.useEffect(() => {
 		if (!authState) router.replace("/");
@@ -148,143 +166,168 @@ export default function AdminLayout({ children }) {
 	};
 
 	return (
-		<Box sx={{ display: "flex" }}>
-			<CssBaseline />
-			<AppBar
-				position="fixed"
-				open={open}
-				classes={{ root: classes.AppBar }}
-				sx={{ boxShadow: 0 }}
-			>
-				<Toolbar>
-					<IconButton
-						color="secondary"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						edge="start"
-						sx={{ mr: 2, ...(open && { display: "none" }), flexGrow: 0 }}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography
-						variant="h6"
-						noWrap
-						component="div"
-						color="primary"
-						sx={{ flexGrow: 1, visibility: "hidden" }}
-					>
-						Hidden
-					</Typography>
-					<Subtitle2>Nama</Subtitle2>
-					<IconButton
-						color="secondary"
-						aria-label="open drawer"
-						edge="end"
-						onClick={handleClick}
-					>
-						<Avatar
-							alt="profile picture"
-							src="https://via.placeholder.com/150/FFFF00/000000C/O https://placeholder.com/"
-						></Avatar>
-					</IconButton>
-				</Toolbar>
-			</AppBar>
-			<Menu
-				anchorEl={anchorEl}
-				open={openMenu}
-				onClose={handleClose}
-				// onClick={handleClose}
-				PaperProps={{
-					elevation: 0,
-					sx: {
-						overflow: "visible",
-						filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-						mt: 1.5,
-						"& .MuiAvatar-root": {
-							width: 32,
-							height: 32,
-							ml: -0.5,
-							mr: 1,
+		<>
+			{loadingState ? <LoadingSection /> : null}
+			<Box sx={{ display: "flex" }}>
+				<CssBaseline />
+				<AppBar
+					position="fixed"
+					open={open}
+					classes={{ root: classes.AppBar }}
+					sx={{ boxShadow: 0, zIndex: 900 }}
+				>
+					<Toolbar>
+						<IconButton
+							color="secondary"
+							aria-label="open drawer"
+							onClick={handleDrawerOpen}
+							edge="start"
+							sx={{ mr: 2, ...(open && { display: "none" }), flexGrow: 0 }}
+						>
+							<MenuIcon />
+						</IconButton>
+						<Typography
+							variant="h6"
+							noWrap
+							component="div"
+							color="primary"
+							sx={{ flexGrow: 1, visibility: "hidden" }}
+						>
+							Hidden
+						</Typography>
+						<Subtitle2>
+							{!!currentUser.name
+								? currentUser.name
+								: !!role
+								? role.toUpperCase()
+								: "USER"}
+						</Subtitle2>
+						<IconButton
+							color="secondary"
+							aria-label="open drawer"
+							edge="end"
+							onClick={handleClick}
+						>
+							<Avatar
+								alt={`Foto profil ${currentUser.name}`}
+								src={
+									!!currentUser.picture
+										? currentUser.picture
+										: "https://via.placeholder.com/150/FFFF00/000000C/O https://placeholder.com/"
+								}
+							></Avatar>
+						</IconButton>
+					</Toolbar>
+				</AppBar>
+				<Menu
+					anchorEl={anchorEl}
+					open={openMenu}
+					onClose={handleClose}
+					// onClick={handleClose}
+					PaperProps={{
+						elevation: 0,
+						sx: {
+							overflow: "visible",
+							filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+							mt: 1.5,
+							"& .MuiAvatar-root": {
+								width: 32,
+								height: 32,
+								ml: -0.5,
+								mr: 1,
+							},
+							"&:before": {
+								content: '""',
+								display: "block",
+								position: "absolute",
+								top: 0,
+								right: 14,
+								width: 10,
+								height: 10,
+								bgcolor: "background.paper",
+								transform: "translateY(-50%) rotate(45deg)",
+								zIndex: 0,
+							},
 						},
-						"&:before": {
-							content: '""',
-							display: "block",
-							position: "absolute",
-							top: 0,
-							right: 14,
-							width: 10,
-							height: 10,
-							bgcolor: "background.paper",
-							transform: "translateY(-50%) rotate(45deg)",
-							zIndex: 0,
-						},
-					},
-				}}
-				transformOrigin={{ horizontal: "right", vertical: "top" }}
-				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-			>
-				<MenuItem>
-					<ListItemIcon>
-						<AddAPhotoIcon fontSize="small" />
-					</ListItemIcon>
-					<Subtitle2>Ubah Foto</Subtitle2>
-				</MenuItem>
-				<MenuItem onClick={() => dispatch(setLogout())}>
-					<ListItemIcon>
-						<Logout fontSize="small" />
-					</ListItemIcon>
-					<Subtitle2>Logout</Subtitle2>
-				</MenuItem>
-			</Menu>
-			<Drawer
-				sx={{
-					width: drawerWidth,
-					flexShrink: 0,
-					"& .MuiDrawer-paper": {
+					}}
+					transformOrigin={{ horizontal: "right", vertical: "top" }}
+					anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+				>
+					<MenuItem>
+						<ListItemIcon>
+							<AddAPhotoIcon fontSize="small" />
+						</ListItemIcon>
+						<Subtitle2>Ubah Foto</Subtitle2>
+					</MenuItem>
+					<MenuItem onClick={() => dispatch(setLogout())}>
+						<ListItemIcon>
+							<Logout fontSize="small" />
+						</ListItemIcon>
+						<Subtitle2>Logout</Subtitle2>
+					</MenuItem>
+				</Menu>
+				<Drawer
+					sx={{
 						width: drawerWidth,
-						boxSizing: "border-box",
-					},
-				}}
-				variant="persistent"
-				anchor="left"
-				open={open}
-				classes={{ paper: classes.Drawer }}
-			>
-				<DrawerHeader>
-					<IconButton onClick={handleDrawerClose}>
-						{theme.direction === "ltr" ? (
-							<ChevronLeftIcon />
-						) : (
-							<ChevronRightIcon />
-						)}
-					</IconButton>
-				</DrawerHeader>
-				<Divider />
-				<List>
-					{DrawerList.map((item) => (
-						<Link href={item.endpoint} passHref key={item.id}>
-							<ListItemButton classes={{ root: classes.DrawerButton }}>
-								<ListItemText>
-									<Subtitle1
-										sx={{
-											"&:hover": {
-												color: defaultTheme.palette.common.white,
-											},
-										}}
-									>
-										{item.text}
-									</Subtitle1>
-								</ListItemText>
-							</ListItemButton>
-						</Link>
-					))}
-				</List>
-				<Divider />
-			</Drawer>
-			<Main open={open}>
-				<DrawerHeader />
-				{children}
-			</Main>
-		</Box>
+						flexShrink: 0,
+						zIndex: 910,
+						"& .MuiDrawer-paper": {
+							width: drawerWidth,
+							boxSizing: "border-box",
+						},
+					}}
+					variant="persistent"
+					anchor="left"
+					open={open}
+					classes={{ paper: classes.Drawer }}
+				>
+					<DrawerHeader>
+						<IconButton onClick={handleDrawerClose}>
+							{theme.direction === "ltr" ? (
+								<ChevronLeftIcon />
+							) : (
+								<ChevronRightIcon />
+							)}
+						</IconButton>
+					</DrawerHeader>
+					<Divider />
+					<List>
+						{DrawerList.map((item) => {
+							if (
+								role === "siswa" &&
+								(item.text === "Pengumuman" ||
+									item.text === "Berita" ||
+									item.text === "Galeri" ||
+									item.text === "Mata Pelajaran")
+							)
+								return null;
+							else
+								return (
+									<Link href={item.endpoint} passHref key={item.id}>
+										<ListItemButton classes={{ root: classes.DrawerButton }}>
+											<ListItemText>
+												<Subtitle1
+													sx={{
+														"&:hover": {
+															color: defaultTheme.palette.common.white,
+														},
+													}}
+												>
+													{item.text}
+												</Subtitle1>
+											</ListItemText>
+										</ListItemButton>
+									</Link>
+								);
+						})}
+					</List>
+					<Divider />
+				</Drawer>
+				<Main open={open}>
+					<DrawerHeader />
+					{children}
+				</Main>
+			</Box>
+		</>
 	);
 }

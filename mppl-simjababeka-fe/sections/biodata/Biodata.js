@@ -61,23 +61,11 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 	})
 );
 
-export default function Biodata({
-	dialogHandler,
-	open,
-	result,
-	imagePreview,
-	setResult,
-}) {
+export default function Biodata({ dialogHandler, open, result, imagePreview }) {
 	const [value, setValue] = React.useState(0);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
-	};
-
-	const toArrayData = (data) => {
-		const temp = Object.values(data);
-		console.log(temp);
-		return temp;
 	};
 
 	const role = EnumRole(useSelector((state) => state.user.role.user_type));
