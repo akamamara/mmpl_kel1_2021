@@ -43,3 +43,17 @@ export const updatePengumumanById = async (id, updatedData) => {
       dispatch(loadingSet(false));
     });
 };
+
+export const deletePengumumanById = async (id) => {
+  //   setLoading(true);
+  return baseApi
+    .delete(`/pengumuman/${id}/`)
+    .then((res) => {
+      console.log(res);
+      console.log("Data terhapus");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // .finally(() => setLoading(false));
+};

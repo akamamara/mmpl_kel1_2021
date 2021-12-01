@@ -8,7 +8,13 @@ import Button from "@/components/input/Button";
 import Link from "next/link";
 import { Subtitle2 } from "@/components/typography/Heading";
 
-import { getPengumuman } from "@/utils/api/pengumuman";
+import FormDialog from "@/components/surfaces/Dialog";
+
+import {
+  getPengumuman,
+  deletePengumumanById,
+  updatePengumumanById,
+} from "@/utils/api/pengumuman";
 
 const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
   <span ref={ref}>
@@ -23,6 +29,11 @@ const PengumumanPage = () => {
   const [filteredData, setFilteredData] = React.useState([]);
   const [isChange, setIsChange] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [idEdit, setIdEdit] = React.useState(0);
+
+  const [result, setResult] = React.useState([]);
+  const [judulPengumuman, setJudulPengumuman] = React.useState("");
+  const [deskripsiPengumuman, setDeskripsiPengumuman] = React.useState("");
 
   React.useEffect(() => {
     getPengumuman(setData);
@@ -31,12 +42,40 @@ const PengumumanPage = () => {
     };
   }, []);
 
+  const dialogEditHandler = {
+    handleClickOpen: () => {
+      setOpen(true);
+    },
+
+    handleClose: () => {
+      setOpen(false);
+    },
+
+    handleSimpan: () => {
+      if (result.judul_pengumuman && result.isi_pengumuman) {
+        console.log(idEdit);
+        const simpan = {
+          id: idEdit,
+          judul_pengumuman: result.judul_pengumuman,
+          isi_pengumuman: result.isi_pengumuman,
+        };
+        updatePengumumanById(idEdit, simpan);
+        setOpen(!open);
+        let findIndex = data.map((x) => x.id).indexOf(idEdit);
+        console.log(findIndex);
+        data.splice(findIndex, 1, simpan);
+      }
+    },
+  };
+
   const handleChange = (event) => {
     if (event.target.value.length > 0) {
       let searchKeyword = data.filter((item) =>
         item.judul_pengumuman
-          .toLowerCase()
-          .includes(event.target.value.toLowerCase())
+          ? item.judul_pengumuman
+              .toLowerCase()
+              .includes(event.target.value.toLowerCase())
+          : ""
       );
       setIsChange(true);
       setFilteredData(searchKeyword);
@@ -48,17 +87,37 @@ const PengumumanPage = () => {
 
   const handleEdit = (row) => {
     setOpen(!open);
-    // const id = row[0];
-    // setIdEdit(id);
+    const id = row[0];
+    setIdEdit(id);
   };
 
   const handleHapus = (row) => {
-    console.log(row[0]);
-    // const id = row[0];
-    // deleteMataPelajaranById(id);
-    // const newData = data.filter((item) => item.id !== id);
-    // setData(newData);
-    // setFilteredData(newData);
+    // console.log(row[0]);
+    const id = row[0];
+    deletePengumumanById(id);
+    const newData = data.filter((item) => item.id !== id);
+    setData(newData);
+    setFilteredData(newData);
+  };
+
+  const handleJudulPengumuman = {
+    handleInput: (event) => {
+      setJudulPengumuman(event.target.value);
+      setResult({ ...result, [event.target.name]: event.target.value });
+    },
+    checkValue: () => {
+      return judulPengumuman;
+    },
+  };
+
+  const handleDeskripsiPengumuman = {
+    handleInput: (event) => {
+      setDeskripsiPengumuman(event.target.value);
+      setResult({ ...result, [event.target.name]: event.target.value });
+    },
+    checkValue: () => {
+      return deskripsiPengumuman;
+    },
   };
 
   return (
@@ -80,6 +139,28 @@ const PengumumanPage = () => {
         handleEdit={handleEdit}
         handleHapus={handleHapus}
       />
+      <FormDialog
+        dialogHandler={dialogEditHandler}
+        open={open}
+        title="Ubah Pengumuman"
+      >
+        <InputText
+          name="judul_pengumuman"
+          label="Judul Pengumumuman"
+          sx={{ mb: 1, width: "100%" }}
+          onChange={(e) => handleJudulPengumuman.handleInput(e)}
+          value={handleJudulPengumuman.checkValue()}
+        />
+        <InputText
+          name="isi_pengumuman"
+          label="Deskripsi"
+          sx={{ mb: 1, width: "100%" }}
+          multiline
+          rows={5}
+          onChange={(e) => handleDeskripsiPengumuman.handleInput(e)}
+          value={handleDeskripsiPengumuman.checkValue()}
+        />
+      </FormDialog>
     </>
   );
 };

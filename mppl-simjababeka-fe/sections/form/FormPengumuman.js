@@ -8,14 +8,6 @@ import { Subtitle2, Subtitle1 } from "@/components/typography/Heading";
 import { styled } from "@mui/material/styles";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
-const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
-  <span ref={ref}>
-    <Button variant="contained" size="small" {...rest}>
-      {children}
-    </Button>
-  </span>
-));
-
 const Input = styled("input")({
   display: "none",
 });

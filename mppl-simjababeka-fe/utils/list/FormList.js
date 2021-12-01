@@ -32,5 +32,14 @@ const JudulForm = [{ label: "Judul", name: "judul_pengumuman" }];
 
 const DeskripsiForm = [{ label: "Deskripsi", name: "isi_pengumuman" }];
 
+const JudulBeritaForm = [{ label: "Judul", name: "judul_berita" }];
+const DeskripsiBeritaForm = [{ label: "Deskripsi", name: "isi_berita" }];
+
 export default TambahSiswa;
-export { TambahGuru, JudulForm, DeskripsiForm };
+export {
+  TambahGuru,
+  JudulForm,
+  DeskripsiForm,
+  JudulBeritaForm,
+  DeskripsiBeritaForm,
+};

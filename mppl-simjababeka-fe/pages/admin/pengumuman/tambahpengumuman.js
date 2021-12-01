@@ -36,7 +36,6 @@ const TambahPengumumanPage = () => {
 
     handleSubmit: async () => {
       postPengumuman(judul, setData);
-      // registerGuru(1, setCurrentId, resultRegister);
     },
   };
 
@@ -81,7 +80,7 @@ const TambahPengumumanPage = () => {
       ),
     },
     {
-      label: "Tambah Profil Guru",
+      label: "Deskripsi Berita",
       content: (
         <FormPengumuman
           handleInput={deskripsiHandler.handleInput}
