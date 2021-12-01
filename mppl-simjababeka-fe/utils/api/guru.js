@@ -1,7 +1,10 @@
 import baseApi from "@/utils/api/baseAPI";
+import { loadingSet } from "@/utils/redux/slice/loading";
 
+import { dispatch } from "@/utils/redux/store";
 export const getProfilGuru = async (setData) => {
   //   setLoading(true);
+  dispatch(loadingSet(true));
   return baseApi
     .get(`/profil/guru/`)
     .then((res) => {
@@ -10,6 +13,8 @@ export const getProfilGuru = async (setData) => {
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      dispatch(loadingSet(false));
     });
-  // .finally(() => setLoading(false));
 };
