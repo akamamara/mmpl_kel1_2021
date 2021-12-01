@@ -6,20 +6,14 @@ import CarouselSection from "@/sections/beranda/Carousel";
 import JurusanSection from "@/sections/beranda/Jurusan";
 import Pengumuman_Berita from "@/sections/beranda/Pengumuman_Berita";
 
-import { getBerita, getBeritaID } from "@/utils/api/berita";
-import { getPengumuman, getPengumumanID } from "@/utils/api/pengumuman";
+import { getBerita } from "@/utils/api/berita";
+import { getPengumuman } from "@/utils/api/pengumuman";
 
 function HomepageLayouts() {
 	const [dataBerita, setDataBerita] = useState([]);
 	const [dataPengumuman, setDataPengumuman] = useState([]);
 	const [data, setData] = useState([]);
 	const [dataFix, setDataFix] = useState([]);
-
-	const [idBerita, setIdBerita] = useState([]);
-	const [idPengumuman, setIdPengumuman] = useState([]);
-	const [temp, setTemp] = useState([]);
-
-	const [loadingState, setLoadingState] = useState(false);
 
 	useEffect(() => {
 		getBerita(setDataBerita);
