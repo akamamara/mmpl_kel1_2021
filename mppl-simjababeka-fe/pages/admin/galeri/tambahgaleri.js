@@ -64,23 +64,13 @@ const TambahGaleriPage = () => {
       console.log(photos);
       console.log(data);
       if (photos.nama_gambar && selectedImage[0]) {
-        // let formData = new FormData();
-        // // for (let i = 0; i < selectedImage.length; i++) {
-        // formData.append("nama_gambar", `${photos.nama_gambar}_${0}`);
-        // formData.append("nama_galeri", data.id);
-        // formData.append("gambar_galeri", selectedImage[0]);
-        // // postImageToGaleriId(formData);
-        // // }
-        // // Log the key/value pairs
-        // for (var pair of formData.entries()) {
-        //   console.log(pair);
-        // }
-        // postGaleri(formData, setData);
-        const newData = {
-          nama_gambar: photos.nama_gambar,
-          nama_galeri: data.id,
-        };
-        postImageToGaleriId(newData);
+        let formData = new FormData();
+        for (let i = 0; i < selectedImage.length; i++) {
+          formData.append("nama_gambar", `${photos.nama_gambar}_${i}`);
+          formData.append("nama_galeri", data.id);
+          formData.append("gambar_galeri", selectedImage[i]);
+          postImageToGaleriId(formData);
+        }
         setSelectedImage([]);
         setPreviewImage([]);
       }
