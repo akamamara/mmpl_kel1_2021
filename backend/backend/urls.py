@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
+    # TokenObtainPairView,
     TokenRefreshView,
 )
+from .tokens import CustomTokenObtainPairView
 from os import name
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -22,6 +23,13 @@ schema_view = get_schema_view(
     permission_classes = (permissions.AllowAny, )
 )
 
+# custom admin site
+admin.site.site_header = "SMK Jabadeka Admin"
+admin.site.site_title = "SMK Jabadeka Admin Site"
+admin.site.index_title = "SMK Jabadeka Admin"
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('guru.urls')),
@@ -29,7 +37,8 @@ urlpatterns = [
     path('mapel/', include('mapel.urls')),
     path('berita/', include('berita.urls')),
     path('pengumuman/', include('pengumuman.urls')),
-    path('login/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('galeri/', include('galeri.urls')),
+    path('login/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('swagger/', schema_view.with_ui(
         'swagger', cache_timeout=0), name='schema-swagger-ui'),
