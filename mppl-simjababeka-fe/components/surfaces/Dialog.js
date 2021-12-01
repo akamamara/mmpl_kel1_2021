@@ -46,10 +46,16 @@ export default function FormDialog({
 				<DialogActions>
 					<Button onClick={dialogHandler.handleClose}>Cancel</Button>
 					<Button
-						onClick={() => {
-							dialogHandler.handleSubmit(onSubmitData);
-							// dialogHandler.handleClose();
-						}}
+						onClick={
+							onSubmitData
+								? () => {
+										dialogHandler.handleSubmit(onSubmitData);
+										// dialogHandler.handleClose();
+								  }
+								: () => {
+										dialogHandler.handleSimpan();
+								  }
+						}
 					>
 						Simpan
 					</Button>

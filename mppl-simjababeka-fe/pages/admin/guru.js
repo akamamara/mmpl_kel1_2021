@@ -19,7 +19,11 @@ const GuruPage = () => {
   const handleChange = (event) => {
     if (event.target.value.length > 0) {
       let searchKeyword = data.filter((item) =>
-        item.nama_guru.toLowerCase().includes(event.target.value.toLowerCase())
+        item.nama_guru
+          ? item.nama_guru
+              .toLowerCase()
+              .includes(event.target.value.toLowerCase())
+          : ""
       );
       setIsChange(true);
       setFilteredData(searchKeyword);

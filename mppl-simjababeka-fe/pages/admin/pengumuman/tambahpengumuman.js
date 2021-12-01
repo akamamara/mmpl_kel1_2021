@@ -3,74 +3,118 @@ import AdminLayout from "@/layouts/AdminLayout";
 import FormPengumuman from "@/sections/form/FormPengumuman";
 import Image from "next/image";
 import FormData from "form-data";
+import Link from "next/link";
+import Stack from "@mui/material/Stack";
+import { Subtitle2, Subtitle1 } from "@/components/typography/Heading";
+import Button from "@/components/input/Button";
+
+import { JudulForm, DeskripsiForm } from "@/utils/list/FormList";
+import Stepper from "@/components/navigation/Stepper";
+
+import { postPengumuman, updatePengumumanById } from "@/utils/api/pengumuman";
+
+const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
+  <span ref={ref}>
+    <Button variant="contained" size="small" {...rest}>
+      {children}
+    </Button>
+  </span>
+));
 
 const TambahPengumumanPage = () => {
-  const [previewImage, setPreviewImage] = React.useState([]);
-  const [selectedImage, setSelectedImage] = React.useState([]);
-  const [judul, setJudul] = React.useState("");
-  const [deskripsi, setDeskripsi] = React.useState("");
+  // const [previewImage, setPreviewImage] = React.useState([]);
+  // const [selectedImage, setSelectedImage] = React.useState([]);
+  const [judul, setJudul] = React.useState([]);
+  const [deskripsi, setDeskripsi] = React.useState([]);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [data, setData] = React.useState([]);
 
-  const handleJudul = (event) => {
-    setJudul(event.target.value);
+  const judulHandler = {
+    handleInput: (e) => {
+      setJudul({ ...judul, [e.target.name]: e.target.value });
+    },
+
+    handleSubmit: async () => {
+      postPengumuman(judul, setData);
+    },
   };
 
-  const handleDeskripsi = (event) => {
-    setDeskripsi(event.target.value);
+  const deskripsiHandler = {
+    handleInput: (e) => {
+      setDeskripsi({ ...deskripsi, [e.target.name]: e.target.value });
+    },
+
+    handleSubmit: async () => {
+      const updatedData = {
+        judul_pengumuman: data.judul_pengumuman,
+        isi_pengumuman: deskripsi.isi_pengumuman,
+      };
+      updatePengumumanById(data.id, updatedData);
+    },
   };
 
-  const imageHandler = (e) => {
-    setPreviewImage([]);
-    setSelectedImage([]);
-    if (e.target.files) {
-      const fileArray = Array.from(e.target.files).map((file) =>
-        URL.createObjectURL(file)
-      );
-      // console.log(e.target.files);
-      setPreviewImage((prevImages) => prevImages.concat(fileArray));
-      Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
-      setSelectedImage(e.target.files);
-    }
+  const stepperFunction = {
+    handleBack: () => {
+      setActiveStep((prev) => prev - 1);
+    },
+    handleNext: () => {
+      if (activeStep === 0)
+        judulHandler
+          .handleSubmit()
+          .then(() => setActiveStep((prev) => prev + 1));
+      if (activeStep === stepContent.length - 1)
+        deskripsiHandler
+          .handleSubmit()
+          .then(() => setActiveStep((prev) => prev + 1));
+    },
   };
 
-  const renderPhotos = (source) => {
-    return source.map((photos) => {
-      return (
-        <Image
-          src={photos}
-          key={photos}
-          width="200"
-          height="200"
-          alt={photos}
+  const stepContent = [
+    {
+      label: "Judul Pengumuman",
+      content: (
+        <FormPengumuman
+          handleInput={judulHandler.handleInput}
+          list={JudulForm}
         />
-      );
-    });
-  };
+      ),
+    },
+    {
+      label: "Deskripsi Berita",
+      content: (
+        <FormPengumuman
+          handleInput={deskripsiHandler.handleInput}
+          list={DeskripsiForm}
+        />
+      ),
+    },
+  ];
 
-  const simpanHandler = () => {
-    if (judul && deskripsi && selectedImage[0]) {
-      let formData = new FormData();
-
-      formData.append("judul", judul);
-      formData.append("deskripsi", deskripsi);
-      formData.append("gambar", selectedImage[0]);
-
-      // Log the key/value pairs
-      for (var pair of formData.entries()) {
-        console.log(pair);
-      }
-    } else {
-      console.log("Isi formnya ya");
-    }
+  const handleReset = () => {
+    setActiveStep(0);
   };
 
   return (
     <>
-      <FormPengumuman
-        onChange={imageHandler}
-        renderImages={renderPhotos(previewImage)}
-        handleJudul={handleJudul}
-        handleDeskripsi={handleDeskripsi}
-        simpanHandler={simpanHandler}
+      <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+        <Button
+          variant="contained"
+          size="small"
+          color="success"
+          onClick={handleReset}
+        >
+          <Subtitle2>Buat Baru</Subtitle2>
+        </Button>
+        <Link href="/admin/pengumuman">
+          <ButtonNext color="cancel">
+            <Subtitle2>Batal</Subtitle2>
+          </ButtonNext>
+        </Link>
+      </Stack>
+      <Stepper
+        stepperFunction={stepperFunction}
+        activeStep={activeStep}
+        steps={stepContent}
       />
     </>
   );

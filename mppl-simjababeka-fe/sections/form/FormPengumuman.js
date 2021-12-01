@@ -8,82 +8,31 @@ import { Subtitle2, Subtitle1 } from "@/components/typography/Heading";
 import { styled } from "@mui/material/styles";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
-const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
-  <span ref={ref}>
-    <Button variant="contained" size="small" {...rest}>
-      {children}
-    </Button>
-  </span>
-));
-
 const Input = styled("input")({
   display: "none",
 });
 
-const FormPengumuman = ({
-  onChange,
-  renderImages,
-  handleJudul,
-  handleDeskripsi,
-  simpanHandler,
-}) => {
+const FormPengumuman = ({ handleInput, list }) => {
   return (
     <>
-      <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-        <Button
-          variant="contained"
-          size="small"
-          color="success"
-          onClick={simpanHandler}
-        >
-          <Subtitle2>Simpan</Subtitle2>
-        </Button>
-        <Link href="/admin/pengumuman">
-          <ButtonNext color="cancel">
-            <Subtitle2>Batal</Subtitle2>
-          </ButtonNext>
-        </Link>
-      </Stack>
       <Box
         sx={{
           width: "100%",
         }}
       >
-        <InputText
-          name="Judul"
-          label="Judul"
-          sx={{ mb: 1, width: "100%" }}
-          onChange={handleJudul}
-        />
-        <InputText
-          name="Deskripsi"
-          label="Deskripsi"
-          multiline
-          rows={20}
-          sx={{ width: "100%", mb: 1 }}
-          onChange={handleDeskripsi}
-        />
-        <label htmlFor="contained-button-file">
-          <Input
-            accept="image/*"
-            id="contained-button-file"
-            type="file"
-            onChange={onChange}
-          />
-          <Button
-            variant="contained"
-            size="small"
-            component="span"
-            color="success"
-          >
-            <PhotoCamera />
-            {/* <Typography sx={{ ml: 1 }}>Upload Foto</Typography> */}
-            <Subtitle1 sx={{ ml: 1 }}>Upload Foto</Subtitle1>
-          </Button>
-        </label>
-        <Stack direction="row" sx={{ mt: 1 }}>
-          {renderImages}
-        </Stack>
+        {list.map((item, index) => (
+          <Box key={index} py={1} mb={1}>
+            <InputText
+              fullWidth
+              label={item.label}
+              name={item.name}
+              multiline={item.name === "isi_pengumuman" ? true : false}
+              rows={20}
+              type={item.type}
+              onChange={handleInput}
+            />
+          </Box>
+        ))}
       </Box>
     </>
   );
