@@ -66,7 +66,7 @@ function Navbar() {
 											color="inherit"
 											key={index}
 											sx={{ marginRight: 1 }}
-											href={index === 0 ? "/" : item.toLowerCase()}
+											href={index === 0 ? "/" : `/${item.toLowerCase()}`}
 										>
 											{item}
 										</Button>

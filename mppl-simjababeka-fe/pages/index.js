@@ -32,7 +32,9 @@ function HomepageLayouts() {
 		data.map((item) =>
 			tempt.push({
 				title: item.judul_pengumuman || item.judul_berita,
-				description: item.isi_pengumuman || item.isi_berita,
+				description:
+					(item.isi_pengumuman?.split(" ").splice(0, 20).join(" ") ||
+						item.isi_berita?.split(" ").splice(0, 20).join(" ")) + "...",
 				imageSrc: item.gambar_berita,
 				actionLink: item.judul_pengumuman
 					? `/pengumuman/detail_pengumuman?id=${item.id}`
@@ -43,7 +45,7 @@ function HomepageLayouts() {
 		);
 		console.log(tempt);
 		setDataFix(tempt);
-	}, [data]);
+	}, [data.length > 0]);
 
 	return (
 		<>

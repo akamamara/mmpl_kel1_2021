@@ -18,6 +18,22 @@ export const getBerita = async (setData) => {
 			dispatch(loadingSet(false));
 		});
 };
+export const getBeritaById = async (id, setData) => {
+	//   setLoading(true);
+	dispatch(loadingSet(true));
+	return baseApi
+		.get(`/berita/${id}/`)
+		.then((res) => {
+			// console.log(res.map(({ id, ...rest }) => ({ ...rest })));
+			setData(res);
+		})
+		.catch((err) => {
+			console.log(err);
+		})
+		.finally(() => {
+			dispatch(loadingSet(false));
+		});
+};
 
 export const postBerita = async (data, setData) => {
 	dispatch(loadingSet(true));

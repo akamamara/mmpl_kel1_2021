@@ -20,6 +20,23 @@ export const getPengumuman = async (setData) => {
 		});
 };
 
+export const getPengumumanById = async (id, setData) => {
+	dispatch(loadingSet(true));
+	//   setLoading(true);
+	return baseApi
+		.get(`/pengumuman/${id}/`)
+		.then((res) => {
+			// console.log(res.map(({ id, ...rest }) => ({ ...rest })));
+			setData(res);
+		})
+		.catch((err) => {
+			console.log(err);
+		})
+		.finally(() => {
+			dispatch(loadingSet(false));
+		});
+};
+
 export const postPengumuman = async (data, setData) => {
 	dispatch(loadingSet(true));
 	return baseApi

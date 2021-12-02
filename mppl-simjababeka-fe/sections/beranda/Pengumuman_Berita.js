@@ -1,4 +1,5 @@
 import { Grid, Box, ThemeProvider } from "@mui/material";
+import Link from "next/link";
 
 import { Card, CardImages, CardContent } from "@/components/surfaces/Card";
 import { Heading2 } from "@/components/typography/Heading";
@@ -27,7 +28,7 @@ function Pengumuman_Berita({ dataBerita, dataPengumuman }) {
 								variant="contained"
 								color="secondary"
 								text="Selengkapnya"
-								href="pengumuman"
+								href="/pengumuman"
 							/>
 						</Grid>
 					</Box>
@@ -38,18 +39,28 @@ function Pengumuman_Berita({ dataBerita, dataPengumuman }) {
 					>
 						{dataPengumuman.map((item) => (
 							<Grid item xs={6} key={item.id}>
-								<Card>
-									<CardContent>
-										<Body1 sx={{ marginBottom: 1 }}>
-											<b>{item.judul_pengumuman}</b>
-										</Body1>
-										<Body1>
-											{item.isi_pengumuman.split(" ").splice(0, 20).join(" ")}
-											{}
-											{item.isi_pengumuman.split(" ").length > 20 ? "..." : ""}
-										</Body1>
-									</CardContent>
-								</Card>
+								<Link
+									passHref
+									href={{
+										pathname: `/pengumuman/detail_pengumuman`,
+										query: { id: item.id },
+									}}
+								>
+									<Card typeLink>
+										<CardContent>
+											<Body1 sx={{ marginBottom: 1 }}>
+												<b>{item.judul_pengumuman}</b>
+											</Body1>
+											<Body1>
+												{item.isi_pengumuman.split(" ").splice(0, 20).join(" ")}
+												{}
+												{item.isi_pengumuman.split(" ").length > 20
+													? "..."
+													: ""}
+											</Body1>
+										</CardContent>
+									</Card>
+								</Link>
 							</Grid>
 						))}
 					</Grid>
@@ -82,15 +93,23 @@ function Pengumuman_Berita({ dataBerita, dataPengumuman }) {
 					>
 						{dataBerita.map((item) => (
 							<Grid item xs={6} key={item.id}>
-								<Card>
-									<CardImages src={item.gambar_berita} />
-									<CardContent>
-										<Body1 sx={{ marginBottom: 1 }}>
-											<b>{item.judul_berita}</b>
-										</Body1>
-										<Body1>{item.isi_berita}</Body1>
-									</CardContent>
-								</Card>
+								<Link
+									passHref
+									href={{
+										pathname: `/berita/detail_berita`,
+										query: { id: item.id },
+									}}
+								>
+									<Card typeLink>
+										<CardImages src={item.gambar_berita} />
+										<CardContent>
+											<Body1 sx={{ marginBottom: 1 }}>
+												<b>{item.judul_berita}</b>
+											</Body1>
+											<Body1>{item.isi_berita}</Body1>
+										</CardContent>
+									</Card>
+								</Link>
 							</Grid>
 						))}
 					</Grid>
