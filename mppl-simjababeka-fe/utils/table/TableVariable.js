@@ -23,14 +23,14 @@ const VariablePengumuman = [
   "No", //
   "ID",
   "Judul",
-  // "Deskripsi",
+  "Deskripsi",
   "Tanggal Terbit",
 ];
 const VariableBerita = [
   "No", //
   "ID",
   "Judul",
-  // "Deskripsi",
+  "Deskripsi",
   "Tanggal Terbit",
 ];
 const VariableGaleri = [

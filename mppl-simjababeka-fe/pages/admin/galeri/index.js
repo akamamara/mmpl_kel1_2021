@@ -103,8 +103,10 @@ const GaleriPage = () => {
   const handleEdit = async (row) => {
     setOpen(!open);
     const id = row[0];
+    const dataToShow = data.find((item) => item.id === id);
     setIdEdit(id);
-    setDefaultValue(data.find((item) => item.id === id));
+    setDefaultValue(dataToShow);
+    setResult(dataToShow);
     // console.log(defaultValue);
   };
 
@@ -189,6 +191,7 @@ const GaleriPage = () => {
                     multiple={item.multiple}
                     type="file"
                     onChange={imageHandler}
+                    defaultValue={defaultValue[item.name]}
                   />
                   <Button
                     variant="contained"

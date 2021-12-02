@@ -54,7 +54,7 @@ export const postGaleri = async (data, setData) => {
 export const postImageToGaleriId = async (data) => {
 	dispatch(loadingSet(true));
 	return baseApi
-		.post(`/galeri/images/`, data)
+		.post(`/galeri/gambar/images/`, data)
 		.then((res) => {
 			console.log(res);
 			//   setData(res);
@@ -86,7 +86,7 @@ export const updateGaleriById = async (id, updatedData) => {
 	dispatch(loadingSet(true));
 	//   setLoading(true);
 	return baseApi
-		.put(`/galeri/${id}/`, updatedData)
+		.patch(`/galeri/${id}/`, updatedData)
 		.then((res) => {
 			console.log(res);
 			console.log("Data berhasil diedit");

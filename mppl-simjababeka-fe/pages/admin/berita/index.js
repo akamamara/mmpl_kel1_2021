@@ -10,7 +10,7 @@ import { Subtitle2 } from "@/components/typography/Heading";
 
 import FormDialog from "@/components/surfaces/Dialog";
 import {
-  getBerita,
+  getBeritaPartial,
   deleteBeritaById,
   updateBeritaById,
 } from "@/utils/api/berita";
@@ -34,8 +34,10 @@ const BeritaPage = () => {
   const [judulBerita, setJudulBerita] = React.useState("");
   const [deskripsiBerita, setDeskripsiBerita] = React.useState("");
 
+  const [defaultValue, setDefaultValue] = React.useState([]);
+
   React.useEffect(() => {
-    getBerita(setData);
+    getBeritaPartial(setData);
     return () => {
       setData([]);
     };
@@ -65,7 +67,8 @@ const BeritaPage = () => {
         data.splice(findIndex, 1, {
           id: idEdit,
           judul_berita: result.judul_berita,
-          date: "",
+          isi_berita: result.isi_berita,
+          date: "--",
         });
       }
     },
@@ -91,7 +94,10 @@ const BeritaPage = () => {
   const handleEdit = (row) => {
     setOpen(!open);
     const id = row[0];
+    const dataToShow = data.find((item) => item.id === id);
     setIdEdit(id);
+    setDefaultValue(dataToShow);
+    setResult(dataToShow);
   };
 
   const handleHapus = (row) => {
@@ -152,7 +158,7 @@ const BeritaPage = () => {
           label="Judul Berita"
           sx={{ mb: 1, width: "100%" }}
           onChange={(e) => handleJudulBerita.handleInput(e)}
-          value={handleJudulBerita.checkValue()}
+          defaultValue={defaultValue.judul_berita}
         />
         <InputText
           name="isi_berita"
@@ -161,7 +167,7 @@ const BeritaPage = () => {
           multiline
           rows={5}
           onChange={(e) => handleDeskripsiBerita.handleInput(e)}
-          value={handleDeskripsiBerita.checkValue()}
+          defaultValue={defaultValue.isi_berita}
         />
       </FormDialog>
     </>

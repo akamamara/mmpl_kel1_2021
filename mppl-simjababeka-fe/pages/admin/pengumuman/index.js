@@ -35,6 +35,8 @@ const PengumumanPage = () => {
   const [judulPengumuman, setJudulPengumuman] = React.useState("");
   const [deskripsiPengumuman, setDeskripsiPengumuman] = React.useState("");
 
+  const [defaultValue, setDefaultValue] = React.useState([]);
+
   React.useEffect(() => {
     getPengumuman(setData);
     return () => {
@@ -63,7 +65,12 @@ const PengumumanPage = () => {
         setOpen(!open);
         let findIndex = data.map((x) => x.id).indexOf(idEdit);
         console.log(findIndex);
-        data.splice(findIndex, 1, simpan);
+        data.splice(findIndex, 1, {
+          id: idEdit,
+          judul_pengumuman: result.judul_pengumuman,
+          isi_pengumuman: result.isi_pengumuman,
+          date: "--",
+        });
       }
     },
   };
@@ -88,7 +95,10 @@ const PengumumanPage = () => {
   const handleEdit = (row) => {
     setOpen(!open);
     const id = row[0];
+    const dataToShow = data.find((item) => item.id === id);
     setIdEdit(id);
+    setDefaultValue(dataToShow);
+    setResult(dataToShow);
   };
 
   const handleHapus = (row) => {
@@ -149,7 +159,8 @@ const PengumumanPage = () => {
           label="Judul Pengumumuman"
           sx={{ mb: 1, width: "100%" }}
           onChange={(e) => handleJudulPengumuman.handleInput(e)}
-          value={handleJudulPengumuman.checkValue()}
+          // value={handleJudulPengumuman.checkValue()}
+          defaultValue={defaultValue.judul_pengumuman}
         />
         <InputText
           name="isi_pengumuman"
@@ -158,7 +169,8 @@ const PengumumanPage = () => {
           multiline
           rows={5}
           onChange={(e) => handleDeskripsiPengumuman.handleInput(e)}
-          value={handleDeskripsiPengumuman.checkValue()}
+          // value={handleDeskripsiPengumuman.checkValue()}
+          defaultValue={defaultValue.isi_pengumuman}
         />
       </FormDialog>
     </>

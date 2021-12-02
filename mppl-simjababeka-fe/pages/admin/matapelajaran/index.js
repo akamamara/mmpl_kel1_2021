@@ -34,6 +34,7 @@ const MataPelajaranPage = () => {
   const [namaMapel, setNamaMapel] = React.useState("");
 
   const [idEdit, setIdEdit] = React.useState(0);
+  const [defaultValue, setDefaultValue] = React.useState([]);
 
   React.useEffect(() => {
     getMataPelajaran(setData);
@@ -49,13 +50,15 @@ const MataPelajaranPage = () => {
     },
 
     handleSimpan: () => {
-      if (result["Judul"] && result["Jurusan"] && result["Kelas"]) {
+      console.log(result);
+      console.log(defaultValue);
+      if (result["nama_mapel"] && result["jurusan"] && result["kelas"]) {
         console.log(idEdit);
         const simpan = {
           id: idEdit,
-          nama_mapel: result["Judul"],
-          jurusan: result["Jurusan"],
-          kelas: result["Kelas"],
+          nama_mapel: result["nama_mapel"],
+          jurusan: result["jurusan"],
+          kelas: result["kelas"],
         };
         updateMataPelajaranById(idEdit, simpan);
         setOpen(!open);
@@ -86,7 +89,11 @@ const MataPelajaranPage = () => {
   const handleEdit = (row) => {
     setOpen(!open);
     const id = row[0];
+    const dataToShow = data.find((item) => item.id === id);
     setIdEdit(id);
+    setDefaultValue(dataToShow);
+    setResult(dataToShow);
+    console.log(dataToShow);
   };
 
   const handleHapus = (row) => {
@@ -101,7 +108,7 @@ const MataPelajaranPage = () => {
   const handleKelas = {
     handleChange: (event) => {
       setKelas(event.target.value);
-      setResult({ ...result, ["Kelas"]: event.target.value });
+      setResult({ ...result, ["kelas"]: event.target.value });
     },
     checkValue: () => {
       return kelas;
@@ -114,7 +121,7 @@ const MataPelajaranPage = () => {
   const handleJurusan = {
     handleChange: (event) => {
       setJurusan(event.target.value);
-      setResult({ ...result, ["Jurusan"]: event.target.value });
+      setResult({ ...result, ["jurusan"]: event.target.value });
     },
     checkValue: () => {
       return jurusan;
@@ -159,21 +166,24 @@ const MataPelajaranPage = () => {
         title="Ubah Mata Pelajaran"
       >
         <InputText
-          name="Judul"
+          name="nama_mapel"
           label="Nama Mata Pelajaran"
           sx={{ mb: 1, width: "100%" }}
           onChange={(e) => handleNamaMapel.handleInput(e)}
-          value={handleNamaMapel.checkValue()}
+          defaultValue={defaultValue.nama_mapel}
+          // value={handleNamaMapel.checkValue()}
         />
         <BasicSelect
           action={(e) => handleKelas.handleChange(e)}
-          value={handleKelas.checkValue()}
+          // value={handleKelas.checkValue()}
+          defaultValue={defaultValue.kelas}
           data={handleKelas.checkData()}
           label="Kelas"
         />
         <BasicSelect
           action={(e) => handleJurusan.handleChange(e)}
-          value={handleJurusan.checkValue()}
+          // value={handleJurusan.checkValue()}
+          defaultValue={defaultValue.jurusan}
           data={handleJurusan.checkData()}
           label="Jurusan"
         />
