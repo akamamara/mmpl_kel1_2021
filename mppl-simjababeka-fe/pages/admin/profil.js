@@ -98,7 +98,7 @@ const ProfilPage = () => {
 		handleSubmit: (data) => {
 			const result_data = {
 				...result,
-				mapel_id: result.mapel_id.id,
+				mapel_id: result.mapel_id?.id,
 				foto_guru: selectedImage,
 				foto_siswa: selectedImage,
 			};

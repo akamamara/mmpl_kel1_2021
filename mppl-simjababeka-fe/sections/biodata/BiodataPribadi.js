@@ -24,7 +24,7 @@ export default function BiodataPribadi({ role, showData }) {
 	const [dataMatpel, setDataMatpel] = React.useState([]);
 
 	React.useEffect(() => {
-		getMataPelajaran(setDataMatpel);
+		if (role === "guru") getMataPelajaran(setDataMatpel);
 	}, [showData]);
 
 	return (

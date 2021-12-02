@@ -148,7 +148,14 @@ export default function AdminLayout({ children }) {
 	React.useEffect(() => {
 		if (!authState) router.replace("/");
 	}, [authState]);
-	React.useEffect(() => refreshTokenLogin(), []);
+	const MINUTE_MS = 290000;
+	React.useEffect(() => {
+		const interval = setInterval(() => {
+			refreshTokenLogin();
+			console.log("Refreshed!");
+		}, MINUTE_MS);
+		return () => clearInterval(interval);
+	}, []);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
