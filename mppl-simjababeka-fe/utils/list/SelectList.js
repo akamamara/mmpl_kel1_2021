@@ -9,6 +9,18 @@ const KelasList = [
   "Tingkat IV - Teknik Komputer dan Jaringan",
 ];
 
+const KelasListSiswa = [
+  "Semua",
+  "Tingkat I - Tek. Kendaraan Ringan Otomotif", //
+  "Tingkat I - Tek. Komputer dan Jaringan",
+  "Tingkat II - Tek. Kendaraan Ringan Otomotif",
+  "Tingkat II - Tek. Komputer dan Jaringan",
+  "Tingkat III - Tek. Kendaraan Ringan Otomotif",
+  "Tingkat III - Tek. Komputer dan Jaringan",
+  "Tingkat IV - Tek. Kendaraan Ringan Otomotif",
+  "Tingkat IV - Tek. Komputer dan Jaringan",
+];
+
 const AgamaList = [
   "Islam", //
   "Kristen",
@@ -47,7 +59,21 @@ const TingkatList = [
   "Tingkat IV",
 ];
 
+const TingkatListSiswa = [
+  "Semua",
+  "Tingkat I", //
+  "Tingkat II",
+  "Tingkat III",
+  "Tingkat IV",
+];
+
 const JurusanList = [
+  "Tek. Kendaraan Ringan Otomotif", //
+  "Tek. Komputer dan Jaringan",
+];
+
+const JurusanListSiswa = [
+  "Semua",
   "Tek. Kendaraan Ringan Otomotif", //
   "Tek. Komputer dan Jaringan",
 ];
@@ -60,4 +86,7 @@ export {
   DaftarMataPelajaran,
   TingkatList,
   JurusanList,
+  TingkatListSiswa,
+  JurusanListSiswa,
+  KelasListSiswa,
 };

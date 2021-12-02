@@ -4,12 +4,17 @@ import DenseTable from "@/components/surfaces/Table";
 import RecordSiswa from "@/utils/table/TableRecord";
 import VariableSiswa from "@/utils/table/TableVariable";
 import InputText, { BasicSelect } from "@/components/input/Input";
-import KelasList from "@/utils/list/SelectList";
+import KelasList, {
+  TingkatListSiswa,
+  JurusanListSiswa,
+  KelasListSiswa,
+} from "@/utils/list/SelectList";
 
 import { getProfilSiswa } from "@/utils/api/siswa";
 
 const SiswaPage = () => {
   const [kelas, setKelas] = React.useState("");
+  const [jurusan, setJurusan] = React.useState("");
   const [data, setData] = React.useState([]);
   const [filteredData, setFilteredData] = React.useState([]);
   const [isChange, setIsChange] = React.useState(false);
@@ -35,8 +40,24 @@ const SiswaPage = () => {
     }
   };
 
-  const handleKelas = (event) => {
-    setKelas(event.target.value);
+  const handleJurusan = (event) => {
+    setJurusan(event.target.value);
+    if (event.target.value !== "Semua") {
+      console.log(data);
+      let tingkat = event.target.value.split(" - ")[0];
+      let jurusan = event.target.value.split(" - ")[1];
+      console.log(tingkat);
+      console.log(jurusan);
+      let searchFilter = data.filter((item) =>
+        item.jurusan ? item.jurusan === jurusan && item.kelas === tingkat : ""
+      );
+      setIsChange(true);
+      setFilteredData(searchFilter);
+    } else {
+      console.log("sem");
+      setFilteredData(data);
+      setIsChange(false);
+    }
   };
 
   return (
@@ -47,10 +68,10 @@ const SiswaPage = () => {
         onChange={handleChange}
       />
       <BasicSelect
-        action={handleKelas}
-        value={kelas}
-        label="Kelas"
-        data={KelasList}
+        action={handleJurusan}
+        value={jurusan}
+        label="Jurusan"
+        data={KelasListSiswa}
       />
       <DenseTable
         record={isChange ? filteredData : data}
