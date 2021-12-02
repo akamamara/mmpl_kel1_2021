@@ -10,191 +10,192 @@ import { Subtitle2 } from "@/components/typography/Heading";
 import FormDialog from "@/components/surfaces/Dialog";
 import { TingkatList, JurusanList } from "@/utils/list/SelectList";
 import {
-  getMataPelajaran,
-  deleteMataPelajaranById,
-  updateMataPelajaranById,
+	getMataPelajaran,
+	deleteMataPelajaranById,
+	updateMataPelajaranById,
 } from "@/utils/api/mapel";
 
 const ButtonNext = React.forwardRef(({ children, ...rest }, ref) => (
-  <span ref={ref}>
-    <Button variant="contained" size="small" {...rest}>
-      {children}
-    </Button>
-  </span>
+	<span ref={ref}>
+		<Button variant="contained" size="small" {...rest}>
+			{children}
+		</Button>
+	</span>
 ));
+ButtonNext.displayName = "ButtonNext";
 
 const MataPelajaranPage = () => {
-  const [data, setData] = React.useState([]);
-  const [filteredData, setFilteredData] = React.useState([]);
-  const [isChange, setIsChange] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
-  const [result, setResult] = React.useState([]);
-  const [kelas, setKelas] = React.useState("");
-  const [jurusan, setJurusan] = React.useState("");
-  const [namaMapel, setNamaMapel] = React.useState("");
+	const [data, setData] = React.useState([]);
+	const [filteredData, setFilteredData] = React.useState([]);
+	const [isChange, setIsChange] = React.useState(false);
+	const [open, setOpen] = React.useState(false);
+	const [result, setResult] = React.useState([]);
+	const [kelas, setKelas] = React.useState("");
+	const [jurusan, setJurusan] = React.useState("");
+	const [namaMapel, setNamaMapel] = React.useState("");
 
-  const [idEdit, setIdEdit] = React.useState(0);
-  const [defaultValue, setDefaultValue] = React.useState([]);
+	const [idEdit, setIdEdit] = React.useState(0);
+	const [defaultValue, setDefaultValue] = React.useState([]);
 
-  React.useEffect(() => {
-    getMataPelajaran(setData);
-  }, []);
+	React.useEffect(() => {
+		getMataPelajaran(setData);
+	}, []);
 
-  const dialogEditHandler = {
-    handleClickOpen: () => {
-      setOpen(true);
-    },
+	const dialogEditHandler = {
+		handleClickOpen: () => {
+			setOpen(true);
+		},
 
-    handleClose: () => {
-      setOpen(false);
-    },
+		handleClose: () => {
+			setOpen(false);
+		},
 
-    handleSimpan: () => {
-      console.log(result);
-      console.log(defaultValue);
-      if (result["nama_mapel"] && result["jurusan"] && result["kelas"]) {
-        console.log(idEdit);
-        const simpan = {
-          id: idEdit,
-          nama_mapel: result["nama_mapel"],
-          jurusan: result["jurusan"],
-          kelas: result["kelas"],
-        };
-        updateMataPelajaranById(idEdit, simpan);
-        setOpen(!open);
-        let findIndex = data.map((x) => x.id).indexOf(idEdit);
-        console.log(findIndex);
-        data.splice(findIndex, 1, simpan);
-      }
-    },
-  };
+		handleSimpan: () => {
+			console.log(result);
+			console.log(defaultValue);
+			if (result["nama_mapel"] && result["jurusan"] && result["kelas"]) {
+				console.log(idEdit);
+				const simpan = {
+					id: idEdit,
+					nama_mapel: result["nama_mapel"],
+					jurusan: result["jurusan"],
+					kelas: result["kelas"],
+				};
+				updateMataPelajaranById(idEdit, simpan);
+				setOpen(!open);
+				let findIndex = data.map((x) => x.id).indexOf(idEdit);
+				console.log(findIndex);
+				data.splice(findIndex, 1, simpan);
+			}
+		},
+	};
 
-  const handleChange = (event) => {
-    if (event.target.value.length > 0) {
-      let searchKeyword = data.filter((item) =>
-        item.nama_mapel
-          ? item.nama_mapel
-              .toLowerCase()
-              .includes(event.target.value.toLowerCase())
-          : ""
-      );
-      setIsChange(true);
-      setFilteredData(searchKeyword);
-    } else if (event.target.value.length === 0) {
-      setData(data);
-      setIsChange(false);
-    }
-  };
+	const handleChange = (event) => {
+		if (event.target.value.length > 0) {
+			let searchKeyword = data.filter((item) =>
+				item.nama_mapel
+					? item.nama_mapel
+							.toLowerCase()
+							.includes(event.target.value.toLowerCase())
+					: ""
+			);
+			setIsChange(true);
+			setFilteredData(searchKeyword);
+		} else if (event.target.value.length === 0) {
+			setData(data);
+			setIsChange(false);
+		}
+	};
 
-  const handleEdit = (row) => {
-    setOpen(!open);
-    const id = row[0];
-    const dataToShow = data.find((item) => item.id === id);
-    setIdEdit(id);
-    setDefaultValue(dataToShow);
-    setResult(dataToShow);
-    console.log(dataToShow);
-  };
+	const handleEdit = (row) => {
+		setOpen(!open);
+		const id = row[0];
+		const dataToShow = data.find((item) => item.id === id);
+		setIdEdit(id);
+		setDefaultValue(dataToShow);
+		setResult(dataToShow);
+		console.log(dataToShow);
+	};
 
-  const handleHapus = (row) => {
-    // console.log(row[0]);
-    const id = row[0];
-    deleteMataPelajaranById(id);
-    const newData = data.filter((item) => item.id !== id);
-    setData(newData);
-    setFilteredData(newData);
-  };
+	const handleHapus = (row) => {
+		// console.log(row[0]);
+		const id = row[0];
+		deleteMataPelajaranById(id);
+		const newData = data.filter((item) => item.id !== id);
+		setData(newData);
+		setFilteredData(newData);
+	};
 
-  const handleKelas = {
-    handleChange: (event) => {
-      setKelas(event.target.value);
-      setResult({ ...result, ["kelas"]: event.target.value });
-    },
-    checkValue: () => {
-      return kelas;
-    },
-    checkData: () => {
-      return TingkatList;
-    },
-  };
+	const handleKelas = {
+		handleChange: (event) => {
+			setKelas(event.target.value);
+			setResult({ ...result, ["kelas"]: event.target.value });
+		},
+		checkValue: () => {
+			return kelas;
+		},
+		checkData: () => {
+			return TingkatList;
+		},
+	};
 
-  const handleJurusan = {
-    handleChange: (event) => {
-      setJurusan(event.target.value);
-      setResult({ ...result, ["jurusan"]: event.target.value });
-    },
-    checkValue: () => {
-      return jurusan;
-    },
-    checkData: () => {
-      return JurusanList;
-    },
-  };
+	const handleJurusan = {
+		handleChange: (event) => {
+			setJurusan(event.target.value);
+			setResult({ ...result, ["jurusan"]: event.target.value });
+		},
+		checkValue: () => {
+			return jurusan;
+		},
+		checkData: () => {
+			return JurusanList;
+		},
+	};
 
-  const handleNamaMapel = {
-    handleInput: (event) => {
-      setNamaMapel(event.target.value);
-      setResult({ ...result, [event.target.name]: event.target.value });
-    },
-    checkValue: () => {
-      return namaMapel;
-    },
-  };
+	const handleNamaMapel = {
+		handleInput: (event) => {
+			setNamaMapel(event.target.value);
+			setResult({ ...result, [event.target.name]: event.target.value });
+		},
+		checkValue: () => {
+			return namaMapel;
+		},
+	};
 
-  return (
-    <>
-      <InputText
-        label="Cari mata pelajaran"
-        sx={{ width: "50%", mb: 1 }}
-        onChange={handleChange}
-      />
-      <Link href="/admin/matapelajaran/tambahmatapelajaran" passHref>
-        <ButtonNext color="success" sx={{ mb: 1 }}>
-          <Subtitle2>Tambah Mata Pelajaran</Subtitle2>
-        </ButtonNext>
-      </Link>
-      <DenseTable
-        record={isChange ? filteredData : data}
-        variable={VariableMataPelajaran}
-        actionable={true}
-        handleEdit={handleEdit}
-        handleHapus={handleHapus}
-      />
-      <FormDialog
-        dialogHandler={dialogEditHandler}
-        open={open}
-        title="Ubah Mata Pelajaran"
-      >
-        <InputText
-          name="nama_mapel"
-          label="Nama Mata Pelajaran"
-          sx={{ mb: 1, width: "100%" }}
-          onChange={(e) => handleNamaMapel.handleInput(e)}
-          defaultValue={defaultValue.nama_mapel}
-          // value={handleNamaMapel.checkValue()}
-        />
-        <BasicSelect
-          action={(e) => handleKelas.handleChange(e)}
-          // value={handleKelas.checkValue()}
-          defaultValue={defaultValue.kelas}
-          data={handleKelas.checkData()}
-          label="Kelas"
-        />
-        <BasicSelect
-          action={(e) => handleJurusan.handleChange(e)}
-          // value={handleJurusan.checkValue()}
-          defaultValue={defaultValue.jurusan}
-          data={handleJurusan.checkData()}
-          label="Jurusan"
-        />
-      </FormDialog>
-    </>
-  );
+	return (
+		<>
+			<InputText
+				label="Cari mata pelajaran"
+				sx={{ width: "50%", mb: 1 }}
+				onChange={handleChange}
+			/>
+			<Link href="/admin/matapelajaran/tambahmatapelajaran" passHref>
+				<ButtonNext color="success" sx={{ mb: 1 }}>
+					<Subtitle2>Tambah Mata Pelajaran</Subtitle2>
+				</ButtonNext>
+			</Link>
+			<DenseTable
+				record={isChange ? filteredData : data}
+				variable={VariableMataPelajaran}
+				actionable={true}
+				handleEdit={handleEdit}
+				handleHapus={handleHapus}
+			/>
+			<FormDialog
+				dialogHandler={dialogEditHandler}
+				open={open}
+				title="Ubah Mata Pelajaran"
+			>
+				<InputText
+					name="nama_mapel"
+					label="Nama Mata Pelajaran"
+					sx={{ mb: 1, width: "100%" }}
+					onChange={(e) => handleNamaMapel.handleInput(e)}
+					defaultValue={defaultValue.nama_mapel}
+					// value={handleNamaMapel.checkValue()}
+				/>
+				<BasicSelect
+					action={(e) => handleKelas.handleChange(e)}
+					// value={handleKelas.checkValue()}
+					defaultValue={defaultValue.kelas}
+					data={handleKelas.checkData()}
+					label="Kelas"
+				/>
+				<BasicSelect
+					action={(e) => handleJurusan.handleChange(e)}
+					// value={handleJurusan.checkValue()}
+					defaultValue={defaultValue.jurusan}
+					data={handleJurusan.checkData()}
+					label="Jurusan"
+				/>
+			</FormDialog>
+		</>
+	);
 };
 
 MataPelajaranPage.getTitle = "Mata Pelajaran";
 MataPelajaranPage.getLayout = (page) => {
-  return <AdminLayout>{page}</AdminLayout>;
+	return <AdminLayout>{page}</AdminLayout>;
 };
 
 export default MataPelajaranPage;
