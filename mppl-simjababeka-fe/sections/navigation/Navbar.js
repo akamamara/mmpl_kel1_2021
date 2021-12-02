@@ -54,7 +54,7 @@ function Navbar() {
 												variant="contained"
 												color="secondary"
 												key={index}
-												href={item.toLowerCase()}
+												href={`/${item.toLowerCase()}`}
 												disableElevation
 											>
 												{item}
